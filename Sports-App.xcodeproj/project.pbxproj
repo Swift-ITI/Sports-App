@@ -127,6 +127,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A7BFC70B298D4F71008400F9 /* TeamDetails */ = {
+			isa = PBXGroup;
+			children = (
+				A7BFC70C298D4FB6008400F9 /* TeamDetailsStoryboard.storyboard */,
+				A7BFC70E298D4FE0008400F9 /* TeamDetailsViewController.swift */,
+			);
+			path = TeamDetails;
+			sourceTree = "<group>";
+		};
 		D9843B506961AA395155A372 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +222,8 @@
 				DE1FB3E9298A02EB0071268A /* FavouritesScreen */,
 				DE1FB3E8298A02BA0071268A /* LaunchScreen */,
 				DE1FB3E7298A02AA0071268A /* SportsScreen */,
+				DE1FB3E9298A02EB0071268A /* FavouritesScreen */,
+				A7BFC70B298D4F71008400F9 /* TeamDetails */,
 				DE1FB3E6298A029B0071268A /* LeagueDetails */,
 				DE1FB3E5298A027E0071268A /* LeaguesScreen */,
 			);
