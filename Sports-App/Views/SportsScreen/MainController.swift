@@ -51,8 +51,13 @@ extension MainController: UICollectionViewDelegate,UICollectionViewDataSource,UI
         return CGSize(width: (SportsCollectionView.frame.width / 2) - 8, height: SportsCollectionView.frame.height / 5)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+//        let leagueSB = UIStoryboard(name: "LeaguesStoryboard", bundle: nil)
+//        let leaguesVC = leagueSB.instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
+//        self.navigationController?.pushViewController(leaguesVC, animated: true)
+        performSegue(withIdentifier: "goToLeagues", sender: self)
+
+    }
     
 }
