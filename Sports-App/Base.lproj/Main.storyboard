@@ -23,7 +23,7 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="dyW-aR-dRJ" kind="relationship" relationship="viewControllers" id="uBa-2t-3cn"/>
+                        <segue destination="Iry-ma-nv2" kind="relationship" relationship="viewControllers" id="uBa-2t-3cn"/>
                         <segue destination="ht3-hd-28b" kind="relationship" relationship="viewControllers" id="9ri-7A-dXp"/>
                     </connections>
                 </tabBarController>
@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mi4-ZI-752">
-                                <rect key="frame" x="16" y="124" width="361" height="728"/>
+                                <rect key="frame" x="15" y="103" width="363" height="749"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ipF-N8-Lrz">
                                     <size key="itemSize" width="147" height="140"/>
@@ -50,44 +50,35 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crB-YO-1BU">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eV8-bn-H5B">
-                                <rect key="frame" x="165" y="69" width="63.333333333333343" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <color key="highlightedColor" name="AccentColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fg4-5V-Npe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="fg4-5V-Npe" firstAttribute="trailing" secondItem="Mi4-ZI-752" secondAttribute="trailing" constant="16" id="EDI-Nl-EAh"/>
-                            <constraint firstItem="crB-YO-1BU" firstAttribute="leading" secondItem="fg4-5V-Npe" secondAttribute="leading" id="GRA-ZB-ndg"/>
-                            <constraint firstItem="eV8-bn-H5B" firstAttribute="centerY" secondItem="crB-YO-1BU" secondAttribute="centerY" id="JxQ-t5-4kU"/>
-                            <constraint firstItem="crB-YO-1BU" firstAttribute="trailing" secondItem="fg4-5V-Npe" secondAttribute="trailing" id="MOG-oR-qeh"/>
-                            <constraint firstItem="eV8-bn-H5B" firstAttribute="centerX" secondItem="crB-YO-1BU" secondAttribute="centerX" id="ZHJ-1j-8E1"/>
-                            <constraint firstItem="crB-YO-1BU" firstAttribute="top" secondItem="fg4-5V-Npe" secondAttribute="top" id="fiG-XT-ta3"/>
-                            <constraint firstItem="Mi4-ZI-752" firstAttribute="leading" secondItem="fg4-5V-Npe" secondAttribute="leading" constant="16" id="hbE-N7-oui"/>
-                            <constraint firstItem="Mi4-ZI-752" firstAttribute="top" secondItem="crB-YO-1BU" secondAttribute="bottom" constant="21" id="lfV-h3-b58"/>
+                            <constraint firstItem="Mi4-ZI-752" firstAttribute="top" secondItem="fg4-5V-Npe" secondAttribute="top" id="1Xd-9s-FUf"/>
+                            <constraint firstItem="fg4-5V-Npe" firstAttribute="trailing" secondItem="Mi4-ZI-752" secondAttribute="trailing" constant="15" id="UxN-Py-74G"/>
+                            <constraint firstItem="Mi4-ZI-752" firstAttribute="leading" secondItem="fg4-5V-Npe" secondAttribute="leading" constant="15" id="cf6-sD-Xov"/>
                             <constraint firstAttribute="bottom" secondItem="Mi4-ZI-752" secondAttribute="bottom" id="vkj-Xz-Ljp"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Sports" id="xYU-dQ-cVP">
-                        <imageReference key="image" image="sportscourt.fill" catalog="system" symbolScale="large"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="Sports" id="sTf-2n-sz9"/>
                     <connections>
                         <outlet property="SportsCollectionView" destination="Mi4-ZI-752" id="XkS-mq-UZg"/>
+                        <segue destination="2oc-f5-0tY" kind="show" identifier="goToLeagues" id="Wi3-ea-6VP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Bx-yX-ARN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="867.93893129770993" y="-373.23943661971833"/>
+            <point key="canvasLocation" x="1794.6564885496182" y="-373.23943661971833"/>
+        </scene>
+        <!--leaguesStoryboard-->
+        <scene sceneID="xmX-IN-b4T">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LeaguesStoryboard" referencedIdentifier="leaguesStoryboard" id="2oc-f5-0tY" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="vmA-iR-uDO"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zy7-AD-ZfA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2665.6488549618321" y="-354.22535211267609"/>
         </scene>
         <!--Favourites View Controller-->
         <scene sceneID="NYl-kG-u06">
@@ -98,17 +89,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hyd-Gw-jh5">
-                                <rect key="frame" x="16" y="59" width="361" height="710"/>
+                                <rect key="frame" x="16" y="100" width="361" height="669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2m-Qh-Gso">
+                                <rect key="frame" x="16" y="56" width="361" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem title="Favourites" id="8T4-vt-XM5"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BL1-G9-4z8"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BL1-G9-4z8" firstAttribute="bottom" secondItem="hyd-Gw-jh5" secondAttribute="bottom" id="83l-f0-1be"/>
-                            <constraint firstItem="hyd-Gw-jh5" firstAttribute="leading" secondItem="BL1-G9-4z8" secondAttribute="leading" constant="16" id="BSo-cW-Ez4"/>
-                            <constraint firstItem="hyd-Gw-jh5" firstAttribute="top" secondItem="BL1-G9-4z8" secondAttribute="top" id="BaQ-ee-Qbb"/>
-                            <constraint firstItem="BL1-G9-4z8" firstAttribute="trailing" secondItem="hyd-Gw-jh5" secondAttribute="trailing" constant="16" id="Gvz-WM-YPw"/>
+                            <constraint firstItem="s2m-Qh-Gso" firstAttribute="trailing" secondItem="BL1-G9-4z8" secondAttribute="trailing" constant="-16" id="0MO-bT-XTm"/>
+                            <constraint firstItem="BL1-G9-4z8" firstAttribute="top" secondItem="s2m-Qh-Gso" secondAttribute="top" constant="3" id="9m4-ER-ifK"/>
+                            <constraint firstItem="BL1-G9-4z8" firstAttribute="trailing" secondItem="hyd-Gw-jh5" secondAttribute="trailing" constant="16" id="AwE-C8-M3Y"/>
+                            <constraint firstItem="hyd-Gw-jh5" firstAttribute="bottom" secondItem="BL1-G9-4z8" secondAttribute="bottom" id="BWs-E5-bRN"/>
+                            <constraint firstItem="hyd-Gw-jh5" firstAttribute="leading" secondItem="BL1-G9-4z8" secondAttribute="leading" constant="16" id="MN0-9H-Gwy"/>
+                            <constraint firstItem="hyd-Gw-jh5" firstAttribute="top" secondItem="s2m-Qh-Gso" secondAttribute="bottom" id="qjY-9i-WK5"/>
+                            <constraint firstItem="s2m-Qh-Gso" firstAttribute="leading" secondItem="BL1-G9-4z8" secondAttribute="leading" constant="16" id="tId-lc-h4K"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="oYq-sH-Yhu"/>
@@ -118,7 +119,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYW-wU-HPR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="868" y="323"/>
+            <point key="canvasLocation" x="867.93893129770993" y="322.53521126760563"/>
+        </scene>
+        <!--Sports-->
+        <scene sceneID="FOx-R5-TjZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Iry-ma-nv2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sports" id="xYU-dQ-cVP">
+                        <imageReference key="image" image="sportscourt.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ilx-ip-wcU">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dyW-aR-dRJ" kind="relationship" relationship="rootViewController" id="Sa9-cr-W7E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z7h-MN-rbH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="867.93893129770993" y="-373.23943661971833"/>
         </scene>
     </scenes>
     <resources>
