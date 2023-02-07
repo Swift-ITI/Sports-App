@@ -31,11 +31,22 @@
                     </view>
                     <connections>
                         <outlet property="newLeagueTV" destination="Xlq-6s-B2G" id="7hf-Cz-6c4"/>
+                        <segue destination="VPg-mJ-Fl0" kind="show" identifier="goToDetails" id="nYO-0b-8OD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-37.404580152671755" y="-27.464788732394368"/>
+        </scene>
+        <!--leagueDetails-->
+        <scene sceneID="42B-ls-jmo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LeagueDetailsStoryboard" referencedIdentifier="leagueDetails" id="VPg-mJ-Fl0" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="League Details" id="7cj-bs-HIU"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s1b-Me-gYb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="927" y="10"/>
         </scene>
     </scenes>
     <resources>
