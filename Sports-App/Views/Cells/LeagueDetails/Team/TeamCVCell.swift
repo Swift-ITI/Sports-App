@@ -13,6 +13,7 @@ class TeamCVCell: UICollectionViewCell {
     @IBOutlet weak var teamLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        teamLogo.layer.cornerRadius = teamLogo.frame.height/2
         // Initialization code
     }
 

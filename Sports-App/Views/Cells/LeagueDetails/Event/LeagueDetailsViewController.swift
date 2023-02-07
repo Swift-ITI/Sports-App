@@ -99,6 +99,7 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
         case teamsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as! TeamCVCell
             cell.teamLabel.text = "Team +"
+                cell.teamLogo.image = UIImage(named: "SplashLogo")
             return cell
         case resultsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "resultCell", for: indexPath) as! ResultCVCell
