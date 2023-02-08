@@ -72,11 +72,22 @@
                         <outlet property="eventsCollectionView" destination="Zjj-yH-eAH" id="H9y-aR-yBs"/>
                         <outlet property="resultsCollectionView" destination="79F-hG-MXZ" id="sBl-6R-EiO"/>
                         <outlet property="teamsCollectionView" destination="le3-Pj-mnU" id="2rM-oR-2e7"/>
+                        <segue destination="iX0-zq-mhX" kind="show" identifier="gotoTeamDetails" id="e4E-Np-8XW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1026.7175572519084" y="-34.507042253521128"/>
+        </scene>
+        <!--teamDetails-->
+        <scene sceneID="pjS-QX-MPm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TeamDetailsStoryboard" referencedIdentifier="teamDetails" id="iX0-zq-mhX" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cda-pv-NoX"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0JM-Ia-Urq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1657" y="-25"/>
         </scene>
     </scenes>
     <resources>

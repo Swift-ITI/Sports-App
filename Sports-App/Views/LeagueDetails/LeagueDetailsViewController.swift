@@ -111,4 +111,14 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
         }
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case teamsCollectionView:
+            performSegue(withIdentifier: "gotoTeamDetails", sender: self)
+        default:
+            print("hii")
+        }
+    }
+    
 }
