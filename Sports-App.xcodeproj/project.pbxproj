@@ -34,8 +34,8 @@
 		DE74AEA6299167DD006DF5AF /* ResultCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE74AEA4299167DD006DF5AF /* ResultCVCell.xib */; };
 		DE74AEA9299167F1006DF5AF /* EventCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE74AEA7299167F1006DF5AF /* EventCVCell.swift */; };
 		DE74AEAA299167F1006DF5AF /* EventCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE74AEA8299167F1006DF5AF /* EventCVCell.xib */; };
-		DE74AEAE299168A0006DF5AF /* LeagueDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE74AEAD299168A0006DF5AF /* LeagueDetailsViewController.swift */; };
 		DE78DE37299048060025ACBE /* CustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE78DE36299048060025ACBE /* CustomTableCell.xib */; };
+		DEB146272993D0DB00BB148B /* LeagueDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB146262993D0DB00BB148B /* LeagueDetailsViewController.swift */; };
 		DED942B9299046760092E969 /* CustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED942B5299046750092E969 /* CustomTableCell.swift */; };
 		DED942BA299046760092E969 /* LeaguesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DED942B6299046750092E969 /* LeaguesStoryboard.storyboard */; };
 		DED942BB299046760092E969 /* LeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED942B7299046750092E969 /* LeaguesViewController.swift */; };
@@ -96,8 +96,8 @@
 		DE74AEA4299167DD006DF5AF /* ResultCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultCVCell.xib; sourceTree = "<group>"; };
 		DE74AEA7299167F1006DF5AF /* EventCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCVCell.swift; sourceTree = "<group>"; };
 		DE74AEA8299167F1006DF5AF /* EventCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCVCell.xib; sourceTree = "<group>"; };
-		DE74AEAD299168A0006DF5AF /* LeagueDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeagueDetailsViewController.swift; path = "Sports-App/Views/Cells/LeagueDetails/Event/LeagueDetailsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		DE78DE36299048060025ACBE /* CustomTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableCell.xib; sourceTree = "<group>"; };
+		DEB146262993D0DB00BB148B /* LeagueDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewController.swift; sourceTree = "<group>"; };
 		DED942B5299046750092E969 /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
 		DED942B6299046750092E969 /* LeaguesStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LeaguesStoryboard.storyboard; sourceTree = "<group>"; };
 		DED942B7299046750092E969 /* LeaguesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaguesViewController.swift; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				DEE32DA82991DA4E0078107F /* LeagueDetailsStoryboard.storyboard */,
-				DE74AEAD299168A0006DF5AF /* LeagueDetailsViewController.swift */,
+				DEB146262993D0DB00BB148B /* LeagueDetailsViewController.swift */,
 			);
 			path = LeagueDetails;
 			sourceTree = "<group>";
@@ -656,7 +656,6 @@
 			files = (
 				DE1FB3F1298A04440071268A /* League.swift in Sources */,
 				DE1FB3B1298A00690071268A /* MainController.swift in Sources */,
-				DE74AEAE299168A0006DF5AF /* LeagueDetailsViewController.swift in Sources */,
 				DED942B9299046760092E969 /* CustomTableCell.swift in Sources */,
 				DE74AEA5299167DD006DF5AF /* ResultCVCell.swift in Sources */,
 				DED942BB299046760092E969 /* LeaguesViewController.swift in Sources */,
@@ -670,6 +669,7 @@
 				DE1FB3EF298A043C0071268A /* Sport.swift in Sources */,
 				A7BFC6B7298C2176008400F9 /* FavouritesViewController.swift in Sources */,
 				DE1FB3ED298A042E0071268A /* LeagueDetail.swift in Sources */,
+				DEB146272993D0DB00BB148B /* LeagueDetailsViewController.swift in Sources */,
 				A7BFC6F9298C30DC008400F9 /* CustomCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
