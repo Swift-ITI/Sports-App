@@ -41,5 +41,7 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToDetails", sender: self)
+    }
 }
