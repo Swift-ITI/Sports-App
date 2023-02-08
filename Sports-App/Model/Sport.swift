@@ -6,3 +6,13 @@
 //
 
 import Foundation
+class Sport: Decodable {
+    var id: Int?
+    var slug: String?
+    var name: String?
+    var name_translations: [String: String]
+}
+
+class SportsResult: Decodable {
+    var data: [Sport]
+}
