@@ -21,12 +21,12 @@ class MainController: UIViewController {
 
         let nib = UINib(nibName: "CustomCollectionViewCell", bundle: nil)
         SportsCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        sportVM = SportVM()
+        /*sportVM = SportVM()
         sportVM?.getSports()
         sportVM?.bindDataToSportVC = { () in
             self.renderView()
         }
-        SportsCollectionView.reloadData()
+        SportsCollectionView.reloadData()*/
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -40,13 +40,15 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sportsArray.count
+        //sportsArray.count
+        6
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
 
-        cell.sportName.text = sportsArray[indexPath.row].name
+        cell.sportName.text = "Football"
+        //cell.sportName.text = sportsArray[indexPath.row].name
 //        cell.sportsImageView.image = UIImage(named: sportsImages[indexPath.row])
 
         return cell
@@ -58,9 +60,10 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let leagueSB = UIStoryboard(name: "LeaguesStoryboard", bundle: nil)
-//        let leaguesVC = leagueSB.instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
-//        self.navigationController?.pushViewController(leaguesVC, animated: true)
+        let leaguesVC = UIStoryboard(name: "LeaguesStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
+//        leaguesVC.sportId = sportsArray[indexPath.row].id
         performSegue(withIdentifier: "goToLeagues", sender: self)
+        
     }
 }
 
