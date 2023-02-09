@@ -27,14 +27,14 @@ class LeagueDetailsViewController: UIViewController {
         resultsCollectionView.reloadData()
         teamsCollectionView.reloadData()
         eventsCollectionView.reloadData()
-        
-        
     }
+
     override func viewWillAppear(_ animated: Bool) {
         resultsCollectionView.reloadData()
         teamsCollectionView.reloadData()
         eventsCollectionView.reloadData()
     }
+
     @objc func printAdd() {
         print("Added")
     }
@@ -78,23 +78,26 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case eventsCollectionView:
-                return CGSize(width: eventsCollectionView.frame.width-16, height: eventsCollectionView.frame.height - 20)
+            return CGSize(width: eventsCollectionView.frame.width - 16, height: eventsCollectionView.frame.height - 20)
         case resultsCollectionView:
-                return CGSize(width: resultsCollectionView.frame.width-16, height: resultsCollectionView.frame.height / 10)
+            return CGSize(width: resultsCollectionView.frame.width - 16, height: resultsCollectionView.frame.height / 10)
         case teamsCollectionView:
-                return CGSize(width: teamsCollectionView.frame.width / 3.33, height: teamsCollectionView.frame.height-20)
+            return CGSize(width: teamsCollectionView.frame.width / 3.33, height: teamsCollectionView.frame.height - 20)
         default:
             return CGSize(width: 100, height: 100)
         }
     }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case eventsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! EventCVCell
-            cell.nameLabel.text = "Event +"
+            cell.awayImageE.image = UIImage(named: "SplashLogo")
+            cell.homeImageE.image = UIImage(named: "SplashLogo")
             return cell
         case teamsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as! TeamCVCell
@@ -103,15 +106,19 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
             return cell
         case resultsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "resultCell", for: indexPath) as! ResultCVCell
-            cell.resultLabel.text = "Result +"
+            cell.awayImage.image = UIImage(named: "SplashLogo")
+            cell.homeImage.image = UIImage(named: "SplashLogo")
+            cell.awayLabel.text = "FCB"
+            cell.homeLabel.text = "RMD"
+            cell.awayResult.text = "5"
+            cell.homeResult.text = "4"
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "default", for: indexPath)
             return cell
         }
-        
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case teamsCollectionView:
@@ -120,5 +127,4 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
             print("hii")
         }
     }
-    
 }
