@@ -17,6 +17,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         self.layer.cornerRadius = 20
+        sportsImageView.layer.cornerRadius = 20
     }
 
 }

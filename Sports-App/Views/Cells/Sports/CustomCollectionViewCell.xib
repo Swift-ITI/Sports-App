@@ -18,26 +18,30 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Kx-nA-tN8">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="42"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYo-ds-AnT">
-                        <rect key="frame" x="4" y="18.666666666666668" width="42.333333333333336" height="12.666666666666668"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYo-ds-AnT">
+                        <rect key="frame" x="0.0" y="39.666666666666664" width="50" height="10.333333333333336"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" name="AccentColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="lYo-ds-AnT" firstAttribute="height" secondItem="9Kx-nA-tN8" secondAttribute="height" multiplier="1:4" id="3MU-BQ-0Eu"/>
                 <constraint firstAttribute="trailing" secondItem="9Kx-nA-tN8" secondAttribute="trailing" id="7kw-Mj-TpZ"/>
-                <constraint firstItem="lYo-ds-AnT" firstAttribute="centerX" secondItem="9Kx-nA-tN8" secondAttribute="centerX" id="BGi-w0-yED"/>
-                <constraint firstItem="lYo-ds-AnT" firstAttribute="centerY" secondItem="9Kx-nA-tN8" secondAttribute="centerY" id="BH6-MU-19v"/>
+                <constraint firstAttribute="trailing" secondItem="lYo-ds-AnT" secondAttribute="trailing" id="NtP-DQ-NkB"/>
                 <constraint firstItem="9Kx-nA-tN8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="b33-lt-gYE"/>
-                <constraint firstAttribute="bottom" secondItem="9Kx-nA-tN8" secondAttribute="bottom" id="cIm-g5-3oY"/>
+                <constraint firstAttribute="bottom" secondItem="9Kx-nA-tN8" secondAttribute="bottom" constant="8" id="cIm-g5-3oY"/>
+                <constraint firstAttribute="bottom" secondItem="lYo-ds-AnT" secondAttribute="bottom" id="dTW-Yn-0QV"/>
                 <constraint firstItem="9Kx-nA-tN8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lfT-sN-CDP"/>
+                <constraint firstItem="lYo-ds-AnT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xfX-f9-CKO"/>
             </constraints>
             <connections>
                 <outlet property="sportName" destination="lYo-ds-AnT" id="D0c-Vd-igD"/>

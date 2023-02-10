@@ -10,22 +10,22 @@ import UIKit
 
 class MainController: UIViewController {
     @IBOutlet var SportsCollectionView: UICollectionView!
-    var sportsArray: [Sport] = []
-//    var sportsImages: [String] = []
-    var sportVM: SportVM?
+    var sports: [String]?
+    var sportsAPI: [String]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        sportsImages = ["Football","Tennis","Basketball","Ice Hockey","Volleyball","Handball"]
+        
         SportsCollectionView.dataSource = self
         SportsCollectionView.delegate = self
-
+//        var s1 = Sport(name: "football")
+        sports = ["Football","Basketball","Cricket","Tennis","Ice Hockey","Baseball","American Football"]
+        sportsAPI = ["football","basketball","cricket","tennis","hockey","baseball","american-football"]
+        
+        
         let nib = UINib(nibName: "CustomCollectionViewCell", bundle: nil)
         SportsCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        sportVM = SportVM()
-        sportVM?.getSports()
-        sportVM?.bindDataToSportVC = { () in
-            self.renderView()
-        }
+
         SportsCollectionView.reloadData()
     }
 
@@ -40,14 +40,15 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sportsArray.count
+        sports?.count ?? 6
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
-
-        cell.sportName.text = sportsArray[indexPath.row].name
-//        cell.sportsImageView.image = UIImage(named: sportsImages[indexPath.row])
+        
+        cell.sportName.text = sports?[indexPath.row]
+        cell.sportsImageView.image = UIImage(named: sports?[indexPath.row] ?? "")
+        //cell.backgroundColor = UIColor.clear
 
         return cell
     }
@@ -57,18 +58,13 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let leagueSB = UIStoryboard(name: "LeaguesStoryboard", bundle: nil)
-//        let leaguesVC = leagueSB.instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
-//        self.navigationController?.pushViewController(leaguesVC, animated: true)
-        performSegue(withIdentifier: "goToLeagues", sender: self)
+        let leagueSB: UIStoryboard = UIStoryboard(name: "LeaguesStoryboard", bundle: nil)
+        let leaguesVC = leagueSB.instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
+        leaguesVC.SportID = sportsAPI?[indexPath.row]
+        self.navigationController?.pushViewController(leaguesVC, animated: true)
+//        let leaguesVC = LeaguesViewController()
+//        leaguesVC.SportID = sportsAPI?[indexPath.row]
+//        performSegue(withIdentifier: "goToLeagues", sender: self)
     }
 }
 
-extension MainController {
-    func renderView() {
-        DispatchQueue.main.async {
-            self.sportsArray = self.sportVM?.sports ?? []
-            self.SportsCollectionView.reloadData()
-        }
-    }
-}
