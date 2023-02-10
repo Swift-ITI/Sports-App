@@ -10,9 +10,9 @@ import UIKit
 
 class MainController: UIViewController {
     @IBOutlet var SportsCollectionView: UICollectionView!
-    var sportsArray: [Sport] = []
+    var sportsArray: [String] = ["Football","Tennis","Basketball","Ice Hockey","Volleyball","Handball"]
 //    var sportsImages: [String] = []
-    var sportVM: SportVM?
+    var sportVM: SportsVM?
     override func viewDidLoad() {
         super.viewDidLoad()
 //        sportsImages = ["Football","Tennis","Basketball","Ice Hockey","Volleyball","Handball"]
@@ -40,15 +40,15 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //sportsArray.count
-        6
+        sportsArray.count
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
 
-        cell.sportName.text = "Football"
-        //cell.sportName.text = sportsArray[indexPath.row].name
+//        cell.sportName.text = "Football"
+        cell.sportName.text = sportsArray[indexPath.row]
 //        cell.sportsImageView.image = UIImage(named: sportsImages[indexPath.row])
 
         return cell
@@ -60,7 +60,7 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let leagueSB = UIStoryboard(name: "LeaguesStoryboard", bundle: nil)
-        let leaguesVC = UIStoryboard(name: "LeaguesStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
+//        let leaguesVC = UIStoryboard(name: "LeaguesStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
 //        leaguesVC.sportId = sportsArray[indexPath.row].id
         performSegue(withIdentifier: "goToLeagues", sender: self)
         
@@ -68,10 +68,10 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
 }
 
 extension MainController {
-    func renderView() {
+    /*func renderView() {
         DispatchQueue.main.async {
             self.sportsArray = self.sportVM?.sports ?? []
             self.SportsCollectionView.reloadData()
         }
-    }
+    }*/
 }

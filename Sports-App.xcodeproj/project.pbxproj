@@ -30,11 +30,11 @@
 		DE1FB3ED298A042E0071268A /* LeagueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB3EC298A042E0071268A /* LeagueDetail.swift */; };
 		DE1FB3EF298A043C0071268A /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB3EE298A043C0071268A /* Sport.swift */; };
 		DE1FB3F1298A04440071268A /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB3F0298A04440071268A /* League.swift */; };
-		DE1FB3F3298A044D0071268A /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB3F2298A044D0071268A /* Team.swift */; };
+		DE1FB3F3298A044D0071268A /* TeamDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB3F2298A044D0071268A /* TeamDetails.swift */; };
 		DE1FB3F6298A05780071268A /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB3F5298A05780071268A /* LaunchScreenController.swift */; };
 		DE5BDEDE2993EB0E003F69AD /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5BDEDD2993EB0E003F69AD /* Protocols.swift */; };
-		DE5BDEE02993EB71003F69AD /* SportVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5BDEDF2993EB71003F69AD /* SportVM.swift */; };
-		DE5BDEE22993F50D003F69AD /* SportsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5BDEE12993F50D003F69AD /* SportsService.swift */; };
+		DE5BDEE02993EB71003F69AD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5BDEDF2993EB71003F69AD /* ViewModel.swift */; };
+		DE5BDEE22993F50D003F69AD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5BDEE12993F50D003F69AD /* NetworkService.swift */; };
 		DE74AEA5299167DD006DF5AF /* ResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE74AEA3299167DD006DF5AF /* ResultCVCell.swift */; };
 		DE74AEA6299167DD006DF5AF /* ResultCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE74AEA4299167DD006DF5AF /* ResultCVCell.xib */; };
 		DE74AEA9299167F1006DF5AF /* EventCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE74AEA7299167F1006DF5AF /* EventCVCell.swift */; };
@@ -97,11 +97,11 @@
 		DE1FB3EC298A042E0071268A /* LeagueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetail.swift; sourceTree = "<group>"; };
 		DE1FB3EE298A043C0071268A /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		DE1FB3F0298A04440071268A /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
-		DE1FB3F2298A044D0071268A /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		DE1FB3F2298A044D0071268A /* TeamDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetails.swift; sourceTree = "<group>"; };
 		DE1FB3F5298A05780071268A /* LaunchScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
 		DE5BDEDD2993EB0E003F69AD /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Protocols.swift; path = "Sports-App/Services/NetworkServices/Protocols.swift"; sourceTree = SOURCE_ROOT; };
-		DE5BDEDF2993EB71003F69AD /* SportVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SportVM.swift; path = "Sports-App/ViewModel/SportVM.swift"; sourceTree = SOURCE_ROOT; };
-		DE5BDEE12993F50D003F69AD /* SportsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SportsService.swift; path = "Sports-App/Services/NetworkServices/SportsService.swift"; sourceTree = SOURCE_ROOT; };
+		DE5BDEDF2993EB71003F69AD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModel.swift; path = "Sports-App/ViewModel/ViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		DE5BDEE12993F50D003F69AD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = "Sports-App/Services/NetworkServices/NetworkService.swift"; sourceTree = SOURCE_ROOT; };
 		DE74AEA3299167DD006DF5AF /* ResultCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCVCell.swift; sourceTree = "<group>"; };
 		DE74AEA4299167DD006DF5AF /* ResultCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultCVCell.xib; sourceTree = "<group>"; };
 		DE74AEA7299167F1006DF5AF /* EventCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCVCell.swift; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 				DE1FB3EC298A042E0071268A /* LeagueDetail.swift */,
 				DE1FB3EE298A043C0071268A /* Sport.swift */,
 				DE1FB3F0298A04440071268A /* League.swift */,
-				DE1FB3F2298A044D0071268A /* Team.swift */,
+				DE1FB3F2298A044D0071268A /* TeamDetails.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 		DE5BDEE4299404DC003F69AD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DE5BDEDF2993EB71003F69AD /* SportVM.swift */,
+				DE5BDEDF2993EB71003F69AD /* ViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				DE5BDEDD2993EB0E003F69AD /* Protocols.swift */,
-				DE5BDEE12993F50D003F69AD /* SportsService.swift */,
+				DE5BDEE12993F50D003F69AD /* NetworkService.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -688,9 +688,9 @@
 				DE74AEA9299167F1006DF5AF /* EventCVCell.swift in Sources */,
 				DE1FB3F6298A05780071268A /* LaunchScreenController.swift in Sources */,
 				DE1FB3B7298A00690071268A /* Sports_App.xcdatamodeld in Sources */,
-				DE5BDEE22993F50D003F69AD /* SportsService.swift in Sources */,
-				DE1FB3F3298A044D0071268A /* Team.swift in Sources */,
-				DE5BDEE02993EB71003F69AD /* SportVM.swift in Sources */,
+				DE5BDEE22993F50D003F69AD /* NetworkService.swift in Sources */,
+				DE1FB3F3298A044D0071268A /* TeamDetails.swift in Sources */,
+				DE5BDEE02993EB71003F69AD /* ViewModel.swift in Sources */,
 				DE1FB3AF298A00690071268A /* SceneDelegate.swift in Sources */,
 				DE1FB3EF298A043C0071268A /* Sport.swift in Sources */,
 				DE5BDEDE2993EB0E003F69AD /* Protocols.swift in Sources */,
