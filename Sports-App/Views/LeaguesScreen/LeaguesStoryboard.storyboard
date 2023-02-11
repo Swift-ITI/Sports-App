@@ -30,7 +30,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="newLeagueTV" destination="Xlq-6s-B2G" id="7hf-Cz-6c4"/>
+                        <outlet property="leaguesTableView" destination="Xlq-6s-B2G" id="nDH-RY-UG1"/>
                         <segue destination="VPg-mJ-Fl0" kind="show" identifier="goToDetails" id="nYO-0b-8OD"/>
                     </connections>
                 </viewController>

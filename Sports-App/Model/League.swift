@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+class League: Decodable {
+    var league_key: Int?
+    var league_name: String?
+    var country_name: String?
+    var league_logo: String?
+    
+}
+
+class LeaguesResult: Decodable {
+    var success: Int
+    var result: [League]
+}

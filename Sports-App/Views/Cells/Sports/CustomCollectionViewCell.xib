@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,44 +10,42 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CustomCollectionViewCell" customModule="Sports_App" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="83" height="76"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="83" height="76"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Kx-nA-tN8">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="83" height="76"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYo-ds-AnT">
-                        <rect key="frame" x="4" y="18.666666666666668" width="42.333333333333336" height="12.666666666666668"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYo-ds-AnT">
+                        <rect key="frame" x="15.333333333333332" y="28.666666666666671" width="52.333333333333343" height="19"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" name="AccentColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="lYo-ds-AnT" firstAttribute="height" secondItem="9Kx-nA-tN8" secondAttribute="height" multiplier="1:4" id="3MU-BQ-0Eu"/>
                 <constraint firstAttribute="trailing" secondItem="9Kx-nA-tN8" secondAttribute="trailing" id="7kw-Mj-TpZ"/>
-                <constraint firstItem="lYo-ds-AnT" firstAttribute="centerX" secondItem="9Kx-nA-tN8" secondAttribute="centerX" id="BGi-w0-yED"/>
-                <constraint firstItem="lYo-ds-AnT" firstAttribute="centerY" secondItem="9Kx-nA-tN8" secondAttribute="centerY" id="BH6-MU-19v"/>
+                <constraint firstItem="lYo-ds-AnT" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ScX-Hp-PRs"/>
+                <constraint firstItem="lYo-ds-AnT" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="YSY-v1-HIv"/>
                 <constraint firstItem="9Kx-nA-tN8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="b33-lt-gYE"/>
                 <constraint firstAttribute="bottom" secondItem="9Kx-nA-tN8" secondAttribute="bottom" id="cIm-g5-3oY"/>
                 <constraint firstItem="9Kx-nA-tN8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lfT-sN-CDP"/>
             </constraints>
+            <size key="customSize" width="83" height="76"/>
             <connections>
                 <outlet property="sportName" destination="lYo-ds-AnT" id="D0c-Vd-igD"/>
                 <outlet property="sportsImageView" destination="9Kx-nA-tN8" id="aSA-VS-9cF"/>
             </connections>
-            <point key="canvasLocation" x="-32.061068702290072" y="19.718309859154932"/>
+            <point key="canvasLocation" x="-6.8702290076335872" y="28.87323943661972"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <namedColor name="AccentColor">
-            <color red="0.059999998658895493" green="0.51999998092651367" blue="0.82599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

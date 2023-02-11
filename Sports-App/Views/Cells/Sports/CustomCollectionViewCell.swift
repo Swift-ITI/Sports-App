@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class CustomCollectionViewCell: UICollectionViewCell {
 
@@ -17,6 +18,10 @@ class CustomCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         self.layer.cornerRadius = 20
+        sportsImageView.layer.cornerRadius = sportsImageView.frame.height/2
+        
+        self.layer.borderColor = Color.accentColor.cgColor
+        self.layer.borderWidth = 2
     }
 
 }
