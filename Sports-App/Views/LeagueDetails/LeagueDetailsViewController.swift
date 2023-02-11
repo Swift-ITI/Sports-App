@@ -13,10 +13,11 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet var teamsCollectionView: UICollectionView!
     @IBOutlet var eventsCollectionView: UICollectionView!
     
-    var teams:[Team] = []
+    var teams:[Teams] = []
     var events:[Event] = []
     var results:[Result] = []
     var leagueId:Int?
+    var sportId:String?
     var leagueVM = LeagueDetailsVM()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +33,9 @@ class LeagueDetailsViewController: UIViewController {
         navigationItem.rightBarButtonItem = rightButton
         
         
-        leagueVM.getTeams(leagueId: leagueId ?? 177)
-        leagueVM.getResults(leagueId: leagueId ?? 177)
-        leagueVM.getEvents(leagueId: leagueId ?? 177)
+        leagueVM.getTeams(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
+        leagueVM.getResults(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
+        leagueVM.getEvents(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
         
         leagueVM.bindTeamsToLeagueDVC = { () in
             self.renderTeams()

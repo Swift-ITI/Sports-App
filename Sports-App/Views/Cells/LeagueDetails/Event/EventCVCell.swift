@@ -17,12 +17,12 @@ class EventCVCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 20
-        awayImageE.layer.cornerRadius = awayImageE.frame.height/2
-        homeImageE.layer.cornerRadius = homeImageE.frame.height/2
-        homeImageE.layer.borderColor = Color.accentColor.cgColor
-        awayImageE.layer.borderColor = Color.accentColor.cgColor
-        homeImageE.layer.borderWidth = 1.5
-        awayImageE.layer.borderWidth = 1.5
+//        awayImageE.layer.cornerRadius = awayImageE.frame.height/2
+//        homeImageE.layer.cornerRadius = homeImageE.frame.height/2
+//        homeImageE.layer.borderColor = Color.accentColor.cgColor
+//        awayImageE.layer.borderColor = Color.accentColor.cgColor
+//        homeImageE.layer.borderWidth = 1.5
+//        awayImageE.layer.borderWidth = 1.5
         // Initialization code
     }
 

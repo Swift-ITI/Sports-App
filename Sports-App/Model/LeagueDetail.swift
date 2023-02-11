@@ -32,14 +32,14 @@ class EventsResult: Decodable {
     var result: [Event]
 }
 
-class Team: Decodable {
+class Teams: Decodable {
     var team_key: Int?
     var team_name: String?
     var team_logo: String?
 }
 
 class TeamsResult: Decodable {
-    var result: [Team]
+    var result: [Teams]
 }
 
 class Result: Decodable {

@@ -68,6 +68,7 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetailsVC = UIStoryboard(name: "LeagueDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
         leagueDetailsVC.leagueId = leaguesArray?[indexPath.row].league_key
+        leagueDetailsVC.sportId = self.SportID
         navigationController?.pushViewController(leagueDetailsVC, animated: true)
 //        performSegue(withIdentifier: "goToDetails", sender: self)
     }

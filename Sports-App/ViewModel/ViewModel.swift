@@ -14,7 +14,7 @@ class LeagueDetailsVM{
     var bindEventsToLeagueDVC: (() -> Void) = {}
     var bindResultsToLeagueDVC: (() -> Void) = {}
     
-    var teams: [Team] = [] {
+    var teams: [Teams] = [] {
         didSet {
             bindTeamsToLeagueDVC()
         }
@@ -30,20 +30,20 @@ class LeagueDetailsVM{
         }
     }
     
-    func getTeams(leagueId:Int) {
+    func getTeams(leagueId:Int,sportId:String) {
         LeagueDetailsService.fetchTeams(completionHandler: { result in
             self.teams = result?.result ?? []
-        }, leagueId: leagueId)
+        }, leagueId: leagueId, sportId:sportId)
     }
-    func getEvents(leagueId:Int) {
+    func getEvents(leagueId:Int,sportId:String) {
         LeagueDetailsService.fetchEvents(completionHandler: { result in
             self.events = result?.result ?? []
-        }, leagueId: leagueId)
+        }, leagueId: leagueId, sportId:sportId)
     }
-    func getResults(leagueId:Int) {
+    func getResults(leagueId:Int,sportId:String) {
         LeagueDetailsService.fetchResults(completionHandler: { result in
             self.results = result?.result ?? []
-        }, leagueId: leagueId)
+        }, leagueId: leagueId, sportId:sportId)
     }
 }
 
