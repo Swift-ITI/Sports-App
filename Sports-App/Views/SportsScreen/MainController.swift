@@ -18,7 +18,6 @@ class MainController: UIViewController {
         
         SportsCollectionView.dataSource = self
         SportsCollectionView.delegate = self
-//        var s1 = Sport(name: "football")
         sports = ["Football","Basketball","Cricket","Tennis","Ice Hockey","Baseball","American Football"]
         sportsAPI = ["football","basketball","cricket","tennis","hockey","baseball","american-football"]
         
@@ -59,8 +58,7 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let leaguesVC = UIStoryboard(name: "LeaguesStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
-//        leaguesVC.sportId = sportsArray[indexPath.row].id
-        leaguesVC.SportID = sportsAPI?[indexPath.row] ?? ""
+        leaguesVC.sportID = sportsAPI?[indexPath.row] ?? ""
         navigationController?.pushViewController(leaguesVC, animated: true)
         //performSegue(withIdentifier: "goToLeagues", sender: self)
 //        let goto = UIStoryboardSegue(identifier: "Main", source: self, destination: leaguesVC) {

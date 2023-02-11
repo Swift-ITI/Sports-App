@@ -18,7 +18,7 @@ class LeaguesViewController: UIViewController {
     }
     var leaguesArray: [League]?
     var leagueVM: LeaguesVM?
-    var SportID: String?
+    var sportID: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +31,7 @@ class LeaguesViewController: UIViewController {
         indicator.startAnimating()
 
         leagueVM = LeaguesVM()
-        leagueVM?.getLeagues(endPoint: SportID ?? "football")
+        leagueVM?.getLeagues(endPoint: sportID ?? "football")
         leagueVM?.bindLeaguesToVC = { () in
             self.renderView()
             indicator.stopAnimating()
@@ -68,7 +68,8 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetailsVC = UIStoryboard(name: "LeagueDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
         leagueDetailsVC.leagueId = leaguesArray?[indexPath.row].league_key
-        leagueDetailsVC.sportId = self.SportID
+        leagueDetailsVC.league_country = leaguesArray?[indexPath.row].country_name
+        leagueDetailsVC.sportId = self.sportID
         navigationController?.pushViewController(leagueDetailsVC, animated: true)
 //        performSegue(withIdentifier: "goToDetails", sender: self)
     }

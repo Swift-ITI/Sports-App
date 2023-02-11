@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Kingfisher
 
 class TeamDetailsViewController: UIViewController {
 
@@ -15,13 +16,20 @@ class TeamDetailsViewController: UIViewController {
     @IBOutlet var teamName_label: UILabel!
     @IBOutlet var stadium_Image: UIImageView!
     @IBOutlet var teamLogoImage: UIImageView!
-    
+    var players: [Player]?
+    var team: Teams?
+    var league_name: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let nib = UINib(nibName: "CustomTableCell", bundle: nil)
         tableView_teamDetails.register(nib, forCellReuseIdentifier: "leagueCell")
-        self.renderImage()
+        //self.renderImage()
+        teamName_label.text = team?.team_name
+        stadiumName_label.text = self.league_name
+        stadium_Image.image = UIImage(named: "stadium")
+        teamLogoImage.kf.setImage(with: URL(string: team?.team_logo ?? ""))
+        players = team?.players
     }
     
 
@@ -44,15 +52,15 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return players?.count ?? 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! CustomTableCell
-        cell.imgView.image = UIImage(named: "SplashLogo")
-        cell.nameLabel.text = "Premiere League: Soccerrrrrrrrrr"
-        cell.countryLabel.text = "England"
+        cell.imgView.kf.setImage(with: URL(string: players?[indexPath.row].player_image ?? ""))
+        cell.nameLabel.text = players?[indexPath.row].player_name
+        cell.countryLabel.text = players?[indexPath.row].player_type
         
         return cell
     }
@@ -64,12 +72,12 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource{
     
 }
 
-extension TeamDetailsViewController{
-    func renderImage(){
-        
-        teamLogoImage.image = UIImage(named: "SplashLogo")
-        teamLogoImage.layer.cornerRadius = teamLogoImage.frame.height/2
-        teamLogoImage.layer.borderColor = Color.accentColor.cgColor
-        teamLogoImage.layer.borderWidth = 1.5
-    }
-}
+//extension TeamDetailsViewController{
+//    func renderImage(){
+//
+//        teamLogoImage.image = UIImage(named: "SplashLogo")
+//        teamLogoImage.layer.cornerRadius = teamLogoImage.frame.height/2
+//        teamLogoImage.layer.borderColor = Color.accentColor.cgColor
+//        teamLogoImage.layer.borderWidth = 1.5
+//    }
+//}

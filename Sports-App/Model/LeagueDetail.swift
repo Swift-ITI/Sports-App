@@ -36,6 +36,13 @@ class Teams: Decodable {
     var team_key: Int?
     var team_name: String?
     var team_logo: String?
+    var players: [Player]
+}
+
+class Player: Decodable{
+    var player_name: String?
+    var player_type: String?
+    var player_image: String?
 }
 
 class TeamsResult: Decodable {

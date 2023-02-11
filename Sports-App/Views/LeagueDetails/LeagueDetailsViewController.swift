@@ -18,6 +18,7 @@ class LeagueDetailsViewController: UIViewController {
     var results:[Result] = []
     var leagueId:Int?
     var sportId:String?
+    var league_country: String?
     var leagueVM = LeagueDetailsVM()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,7 +153,11 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case teamsCollectionView:
-            performSegue(withIdentifier: "gotoTeamDetails", sender: self)
+            let teamDetailsVC = UIStoryboard(name: "TeamDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "teamDetails") as! TeamDetailsViewController
+            teamDetailsVC.team = teams[indexPath.row]
+            teamDetailsVC.league_name = self.league_country
+            navigationController?.pushViewController(teamDetailsVC, animated: true)
+//            performSegue(withIdentifier: "gotoTeamDetails", sender: self)
         default:
             print("hii")
         }
