@@ -8,22 +8,6 @@
 import Alamofire
 import Foundation
 
-// Sports
-class SportsVM {
-    var bindDataToSportVC: (() -> Void) = {}
-    
-    var sports: [Sport] = [] {
-        didSet {
-            bindDataToSportVC()
-        }
-    }
-    func getSports() {
-        SportsService.fetchSports { result in
-            self.sports = result?.data ?? []
-        }
-    }
-}
-
 // League Details
 class LeagueDetailsVM{
     var bindTeamsToLeagueDVC: (() -> Void) = {}

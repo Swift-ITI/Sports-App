@@ -16,6 +16,7 @@ class LeagueDetailsViewController: UIViewController {
     var teams:[Team] = []
     var events:[Event] = []
     var results:[Result] = []
+    var leagueId:Int?
     var leagueVM = LeagueDetailsVM()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +32,9 @@ class LeagueDetailsViewController: UIViewController {
         navigationItem.rightBarButtonItem = rightButton
         
         
-        leagueVM.getTeams(leagueId: 177)
-        leagueVM.getResults(leagueId: 177)
-        leagueVM.getEvents(leagueId: 177)
+        leagueVM.getTeams(leagueId: leagueId ?? 177)
+        leagueVM.getResults(leagueId: leagueId ?? 177)
+        leagueVM.getEvents(leagueId: leagueId ?? 177)
         
         leagueVM.bindTeamsToLeagueDVC = { () in
             self.renderTeams()
