@@ -13,7 +13,7 @@ class LeaguesViewController: UIViewController {
 
     @IBOutlet weak var leaguesTableView: UITableView!
         var leaguesArray: [League]?
-        var leagueVM: ViewModel?
+        var leagueVM: leaguesVM?
     var SportID: String?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +29,9 @@ class LeaguesViewController: UIViewController {
         self.view.addSubview(indicator)
         indicator.startAnimating()
 
-        leagueVM = ViewModel()
+        leagueVM = leaguesVM()
         leagueVM?.getLeagues(endPoint: SportID ?? "football")
-        leagueVM?.bindDataToVC = { () in
+        leagueVM?.bindLeaguesToVC = { () in
             self.renderView()
             indicator.stopAnimating()
         }

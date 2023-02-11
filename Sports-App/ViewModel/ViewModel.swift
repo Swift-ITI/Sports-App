@@ -7,24 +7,20 @@
 
 import Foundation
 
-class ViewModel{
-    
-    //leagues 
-    var bindDataToVC: (() -> Void) = {}
-    var leagues: [League]?{
+class leaguesVM {
+    // leagues
+    var bindLeaguesToVC: (() -> Void) = {}
+    var leagues: [League]? {
         didSet {
-            bindDataToVC()
+            bindLeaguesToVC()
         }
     }
-    
+
     func getLeagues(endPoint: String) {
-        LeaguesService.fetchLeagues(endPoint: endPoint) {result in
-            if let result = result{
+        LeaguesService.fetchLeagues(endPoint: endPoint) { result in
+            if let result = result {
                 self.leagues = result.result
             }
         }
     }
-    
-    
-    
 }

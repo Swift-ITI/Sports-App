@@ -13,7 +13,6 @@
 		A72DF5BB2993E14A00752FCA /* TeamDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72DF5BA2993E14A00752FCA /* TeamDetailsViewController.swift */; };
 		A72DF5BD2993E16200752FCA /* TeamDetailsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72DF5BC2993E16200752FCA /* TeamDetailsStoryboard.storyboard */; };
 		A73C21A829954696002703AD /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C21A729954696002703AD /* URLs.swift */; };
-		A73C21AA2995585B002703AD /* LeaguesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C21A92995585B002703AD /* LeaguesVM.swift */; };
 		A73C21AC2995BE4E002703AD /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C21AB2995BE4E002703AD /* EventsService.swift */; };
 		A73C21AE2995BE98002703AD /* ResultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C21AD2995BE98002703AD /* ResultsService.swift */; };
 		A73C21B02995BEAF002703AD /* TeamsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73C21AF2995BEAF002703AD /* TeamsService.swift */; };
@@ -78,7 +77,6 @@
 		A72DF5BA2993E14A00752FCA /* TeamDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewController.swift; sourceTree = "<group>"; };
 		A72DF5BC2993E16200752FCA /* TeamDetailsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeamDetailsStoryboard.storyboard; sourceTree = "<group>"; };
 		A73C21A729954696002703AD /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
-		A73C21A92995585B002703AD /* LeaguesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesVM.swift; sourceTree = "<group>"; };
 		A73C21AB2995BE4E002703AD /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		A73C21AD2995BE98002703AD /* ResultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsService.swift; sourceTree = "<group>"; };
 		A73C21AF2995BEAF002703AD /* TeamsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsService.swift; sourceTree = "<group>"; };
@@ -338,7 +336,6 @@
 			isa = PBXGroup;
 			children = (
 				DE5BDEDF2993EB71003F69AD /* ViewModel.swift */,
-				A73C21A92995585B002703AD /* LeaguesVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -707,7 +704,6 @@
 				A73C21A829954696002703AD /* URLs.swift in Sources */,
 				A73C21B02995BEAF002703AD /* TeamsService.swift in Sources */,
 				DE74AEA5299167DD006DF5AF /* ResultCVCell.swift in Sources */,
-				A73C21AA2995585B002703AD /* LeaguesVM.swift in Sources */,
 				DED942BB299046760092E969 /* LeaguesViewController.swift in Sources */,
 				DE0F1B2A2991C4BA0044E5D0 /* TeamCVCell.swift in Sources */,
 				DE1FB3AD298A00690071268A /* AppDelegate.swift in Sources */,
