@@ -16,19 +16,10 @@ class CustomTableCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-//        imgView.layer.cornerRadius = imgView.frame.height/2
+        imgView.layer.cornerRadius = imgView.frame.height/2
         self.layer.cornerRadius = self.frame.height/2
     }
-    
-    
-//    func configureLeagueCell(league: League) {
-//        nameLabel.text = league.league_name ?? "no value"
-//        countryLabel.text = league.country_name ?? "no value"
-//        youtubeBtn.addTarget(self, action: #selector(goToYouTube), for: .touchUpInside)
-//        if let url = URL(string: league.league_logo ?? "no value") {
-//            imgView?.kf.setImage(with: url)
-//        }
-//    }
+
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
