@@ -27,20 +27,21 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAi-SE-7nA">
-                        <rect key="frame" x="29.000000000000004" y="75.666666666666671" width="42.333333333333343" height="20.333333333333329"/>
+                        <rect key="frame" x="29.333333333333329" y="79.666666666666671" width="41.333333333333343" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                         <color key="shadowColor" systemColor="labelColor"/>
-                        <size key="shadowOffset" width="1" height="0.0"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="Sgr-qf-T9o" secondAttribute="bottom" constant="13" id="AE8-Uq-Cgg"/>
                 <constraint firstItem="DAi-SE-7nA" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="RWT-Bq-ug9"/>
-                <constraint firstAttribute="bottom" secondItem="DAi-SE-7nA" secondAttribute="bottom" constant="4" id="S69-bC-uHP"/>
+                <constraint firstAttribute="bottom" secondItem="DAi-SE-7nA" secondAttribute="bottom" id="S69-bC-uHP"/>
                 <constraint firstAttribute="trailing" secondItem="Sgr-qf-T9o" secondAttribute="trailing" constant="8" id="Uk9-x4-jPE"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="Sgr-qf-T9o" secondAttribute="top" constant="56" id="az1-bz-Kr1"/>
                 <constraint firstItem="Sgr-qf-T9o" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="mpL-HG-afw"/>
