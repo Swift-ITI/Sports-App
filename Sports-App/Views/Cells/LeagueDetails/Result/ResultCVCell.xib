@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,36 +15,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="331" height="102"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="AlC-jg-K4R">
-                        <rect key="frame" x="84.666666666666671" y="32.666666666666664" width="161.66666666666663" height="36.999999999999993"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="AlC-jg-K4R">
+                        <rect key="frame" x="130" y="12" width="71" height="78"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Home" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFG-nw-mkM">
-                                <rect key="frame" x="0.0" y="0.0" width="45.666666666666664" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFG-nw-mkM">
+                                <rect key="frame" x="0.0" y="0.0" width="71" height="21.666666666666668"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPW-Ed-cgj">
-                                <rect key="frame" x="54.666666666666671" y="0.0" width="13" height="37"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEc-V7-Mkh">
+                                <rect key="frame" x="0.0" y="24.666666666666664" width="71" height="28.666666666666664"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWK-qV-0Ii">
-                                <rect key="frame" x="76.666666666666671" y="0.0" width="14" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAv-q5-FWo">
-                                <rect key="frame" x="99.666666666666671" y="0.0" width="13" height="37"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Away" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXA-MV-u5u">
-                                <rect key="frame" x="121.66666666666669" y="0.0" width="40" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXA-MV-u5u">
+                                <rect key="frame" x="0.0" y="56.333333333333321" width="71" height="21.666666666666664"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -54,12 +41,10 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" id="St5-RV-Rc9">
                         <rect key="frame" x="8" y="16" width="70" height="70"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" name="AccentColor"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" id="vZw-gg-GUP">
                         <rect key="frame" x="253" y="16" width="70" height="70"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" name="AccentColor"/>
                     </imageView>
                 </subviews>
             </view>
@@ -78,18 +63,12 @@
             <size key="customSize" width="331" height="101"/>
             <connections>
                 <outlet property="awayImage" destination="vZw-gg-GUP" id="xeL-GA-9TI"/>
-                <outlet property="awayLabel" destination="lXA-MV-u5u" id="6DI-96-Ch3"/>
-                <outlet property="awayResult" destination="NAv-q5-FWo" id="7hm-Ou-GPC"/>
+                <outlet property="dateLabel" destination="vFG-nw-mkM" id="lG7-45-wxe"/>
                 <outlet property="homeImage" destination="St5-RV-Rc9" id="qGL-GR-LU2"/>
-                <outlet property="homeLabel" destination="vFG-nw-mkM" id="WJA-bV-y8h"/>
-                <outlet property="homeResult" destination="GPW-Ed-cgj" id="6pN-Hm-tBq"/>
+                <outlet property="resultLabel" destination="JEc-V7-Mkh" id="NYT-hD-1iJ"/>
+                <outlet property="timeLabel" destination="lXA-MV-u5u" id="Iy4-tA-AKj"/>
             </connections>
             <point key="canvasLocation" x="200.76335877862596" y="6.3380281690140849"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <namedColor name="AccentColor">
-            <color red="0.059999998658895493" green="0.51999998092651367" blue="0.82599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

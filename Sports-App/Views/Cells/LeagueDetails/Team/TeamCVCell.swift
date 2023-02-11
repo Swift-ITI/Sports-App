@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class TeamCVCell: UICollectionViewCell {
 
@@ -15,6 +16,8 @@ class TeamCVCell: UICollectionViewCell {
         super.awakeFromNib()
         self.layer.cornerRadius = 15
         teamLogo.layer.cornerRadius = teamLogo.frame.height/2
+        teamLogo.layer.borderColor = Color.accentColor.cgColor
+        teamLogo.layer.borderWidth = 1.5
         // Initialization code
     }
 

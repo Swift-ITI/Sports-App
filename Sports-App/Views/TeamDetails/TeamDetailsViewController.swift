@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class TeamDetailsViewController: UIViewController {
 
@@ -18,9 +19,9 @@ class TeamDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         let nib = UINib(nibName: "CustomTableCell", bundle: nil)
         tableView_teamDetails.register(nib, forCellReuseIdentifier: "leagueCell")
+        self.renderImage()
     }
     
 
@@ -49,8 +50,6 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! CustomTableCell
-//        cell.favImageView.image = UIImage(named: "thor")
-//        cell.favLabel.text = "Premiere League: Soccer"
         cell.imgView.image = UIImage(named: "SplashLogo")
         cell.nameLabel.text = "Premiere League: Soccerrrrrrrrrr"
         cell.countryLabel.text = "England"
@@ -58,20 +57,19 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Players"
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+}
+
+extension TeamDetailsViewController{
+    func renderImage(){
         
+        teamLogoImage.image = UIImage(named: "SplashLogo")
+        teamLogoImage.layer.cornerRadius = teamLogoImage.frame.height/2
+        teamLogoImage.layer.borderColor = Color.accentColor.cgColor
+        teamLogoImage.layer.borderWidth = 1.5
     }
-    
-    
-    
-    
-    
 }

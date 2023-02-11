@@ -58,11 +58,16 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let leagueSB = UIStoryboard(name: "LeaguesStoryboard", bundle: nil)
         let leaguesVC = UIStoryboard(name: "LeaguesStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
 //        leaguesVC.sportId = sportsArray[indexPath.row].id
-        performSegue(withIdentifier: "goToLeagues", sender: self)
-        
+        leaguesVC.SportID = sportsAPI?[indexPath.row] ?? ""
+        navigationController?.pushViewController(leaguesVC, animated: true)
+        //performSegue(withIdentifier: "goToLeagues", sender: self)
+//        let goto = UIStoryboardSegue(identifier: "Main", source: self, destination: leaguesVC) {
+//            leaguesVC.SportID = self.sportsAPI?[indexPath.row] ?? ""
+//        }
+//        goto.perform()
+//        performSegue(withIdentifier: goto, sender: self)
     }
 }
 
