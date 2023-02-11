@@ -73,7 +73,7 @@
         <!--leaguesStoryboard-->
         <scene sceneID="xmX-IN-b4T">
             <objects>
-                <viewControllerPlaceholder storyboardName="LeaguesStoryboard" referencedIdentifier="leaguesStoryboard" id="2oc-f5-0tY" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="leagues" storyboardName="LeaguesStoryboard" referencedIdentifier="leaguesStoryboard" id="2oc-f5-0tY" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="vmA-iR-uDO" userLabel="Leagues"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zy7-AD-ZfA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
