@@ -56,8 +56,6 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! CustomTableCell
 
-        // cell.configureLeagueCell(league: leaguesArray?[indexPath.row] )
-
         cell.imgView?.kf.setImage(with: URL(string: (leaguesArray?[indexPath.row].league_logo) ?? ""))
         cell.nameLabel.text = leaguesArray?[indexPath.row].league_name
         cell.countryLabel.text = leaguesArray?[indexPath.row].country_name
@@ -66,6 +64,7 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetailsVC = UIStoryboard(name: "LeagueDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+        leagueDetailsVC.currentLeague.league_key = leaguesArray?[indexPath.row].league_key
         leagueDetailsVC.leagueId = leaguesArray?[indexPath.row].league_key
         leagueDetailsVC.league_country = leaguesArray?[indexPath.row].country_name
         leagueDetailsVC.sportId = self.sportID

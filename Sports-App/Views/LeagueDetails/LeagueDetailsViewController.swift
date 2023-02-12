@@ -7,20 +7,30 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class LeagueDetailsViewController: UIViewController {
     @IBOutlet var resultsCollectionView: UICollectionView!
     @IBOutlet var teamsCollectionView: UICollectionView!
     @IBOutlet var eventsCollectionView: UICollectionView!
-
-    var teams: [Teams] = []
-    var events: [Event] = []
-    var results: [Result] = []
-    var leagueId: Int?
-    var sportId: String?
+    @IBOutlet weak var favorite_btn: UIBarButtonItem!
+    
+    var teams:[Teams] = []
+    var events:[Event] = []
+    var results:[Result] = []
+    var leagueId:Int?
+    var sportId:String?
     var league_country: String?
     var leagueVM = LeagueDetailsVM()
-
+    //var isLiked = UserDefaults.standard
+    var isLiked = false
+    var currentLeague: League = League()
+    var likedLeagues: [League] = []
+    //var offlineLeague: [NSManagedObject]?
+    var managedContext: NSManagedObjectContext!
+    var appDelegate:AppDelegate?
+    var rightButton:UIBarButtonItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -29,20 +39,21 @@ class LeagueDetailsViewController: UIViewController {
         let eventNib = UINib(nibName: "EventCVCell", bundle: nil)
         let resultNib = UINib(nibName: "ResultCVCell", bundle: nil)
         let teamNib = UINib(nibName: "TeamCVCell", bundle: nil)
+       
         resultsCollectionView.register(resultNib, forCellWithReuseIdentifier: "resultCell")
         eventsCollectionView.register(eventNib, forCellWithReuseIdentifier: "eventCell")
         teamsCollectionView.register(teamNib, forCellWithReuseIdentifier: "teamCell")
-
-        // MARK: NavBar Item
-
-        let rightButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(printAdd))
+        
+         rightButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(saveToCoreData))
         navigationItem.rightBarButtonItem = rightButton
-
-        // MARK: FetchData
-
-        leagueVM.getTeams(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
-        leagueVM.getResults(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
-        leagueVM.getEvents(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
+        
+        //MARK: CoreData
+        appDelegate = UIApplication.shared.delegate as? AppDelegate
+        managedContext = appDelegate?.persistentContainer.viewContext
+        leagueVM.getTeams(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
+        leagueVM.getResults(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
+        leagueVM.getEvents(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
+        
         leagueVM.bindTeamsToLeagueDVC = { () in
             self.renderTeams()
         }
@@ -55,13 +66,21 @@ class LeagueDetailsViewController: UIViewController {
         resultsCollectionView.reloadData()
         teamsCollectionView.reloadData()
         eventsCollectionView.reloadData()
+        self.checkFavouriteLeague()
     }
-
-
-    @objc func printAdd() {
-        print("Added")
+    
+    @objc func saveToCoreData(){
+        DBManager.saveData(appDelegate: appDelegate!, League: currentLeague)
+        isLiked = true
+        rightButton?.image = UIImage(systemName: "heart.fill")
+        showToastMessage(message: "Done", color: .blue)
+        //print("add2")
+        
     }
+    
+    
 }
+
 
 extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -192,8 +211,74 @@ extension LeagueDetailsViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.viewDidLoad()
         resultsCollectionView.reloadData()
         teamsCollectionView.reloadData()
         eventsCollectionView.reloadData()
     }
+}
+
+extension LeagueDetailsViewController{
+    
+//    func showAlertNotConnected() {
+//        let alert = UIAlertController(title: "Not Connected!", message: "Please, Check the internet connection.", preferredStyle: UIAlertController.Style.alert)
+//
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+//
+//        self.present(alert, animated: true, completion: nil)
+//    }
+    
+    func checkFavouriteLeague() {
+        for item in likedLeagues {
+            if item.league_key ==  leagueId{
+                rightButton?.image = UIImage(systemName: "heart.fill")
+                isLiked = true
+                //currentLeague?.isLiked = true
+            } else {
+                rightButton?.image = UIImage(systemName: "heart")
+            }
+        }
+        //ProgressHUD.dismiss()
+    }
+    
+    func showToastMessage(message: String, color: UIColor) {
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.width/2-120, y: self.view.frame.height-100, width: 260, height: 30))
+        
+        toastLabel.textAlignment = .center
+        toastLabel.backgroundColor = color
+        toastLabel.textColor = .black
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10
+        toastLabel.clipsToBounds = true
+        toastLabel.text = message
+        self.view.addSubview(toastLabel)
+        
+        UIView.animate(withDuration: 3.0, delay: 1.0, options: .curveEaseIn, animations: {
+            toastLabel.alpha = 0.0
+        }) { (isCompleted) in
+            toastLabel.removeFromSuperview()
+        }
+    }
+
+
+//    func saveData(League: League){
+//
+//        let entity = NSEntityDescription.entity(forEntityName: "League", in: managedContext)
+//            let champ = NSManagedObject(entity: entity!, insertInto: managedContext)
+//            champ.setValue(League.league_name, forKey: "name")
+//            champ.setValue(League.country_name, forKey: "country")
+//            champ.setValue(League.league_logo, forKey: "logo")
+//
+//            do{
+//                try managedContext.save()
+//            }catch let error{
+//                print(error.localizedDescription)
+//            }
+//
+//            print("Saved!")
+//            self.isLiked.set(true, forKey: "T")
+//    }
+
+
+
 }
