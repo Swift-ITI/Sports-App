@@ -61,7 +61,6 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.imgView?.kf.setImage(with: URL(string: (leaguesArray?[indexPath.row].league_logo) ?? ""))
         cell.nameLabel.text = leaguesArray?[indexPath.row].league_name
         cell.countryLabel.text = leaguesArray?[indexPath.row].country_name
-        cell.youtubeBtn.addTarget(self, action: #selector(goToYouTube), for: .touchUpInside)
         return cell
     }
 
@@ -83,13 +82,13 @@ extension LeaguesViewController {
         }
     }
 
-    @objc func goToYouTube() {
-        let youtubeID: String = ""
-        if let youtubeURL = URL(string: "youtube://\(youtubeID)"), UIApplication.shared.canOpenURL(youtubeURL) {
-            UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
-        } else {
-            let youtubeURL = URL(string: "https://www.youtube.com/watch?v=\(youtubeID)")
-            UIApplication.shared.open(youtubeURL!, options: [:], completionHandler: nil)
-        }
-    }
+//    @objc func goToYouTube() {
+//        let youtubeID: String = ""
+//        if let youtubeURL = URL(string: "youtube://\(youtubeID)"), UIApplication.shared.canOpenURL(youtubeURL) {
+//            UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+//        } else {
+//            let youtubeURL = URL(string: "https://www.youtube.com/watch?v=\(youtubeID)")
+//            UIApplication.shared.open(youtubeURL!, options: [:], completionHandler: nil)
+//        }
+//    }
 }

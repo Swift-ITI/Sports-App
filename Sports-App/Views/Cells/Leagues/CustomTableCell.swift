@@ -9,7 +9,8 @@ import UIKit
 
 class CustomTableCell: UITableViewCell {
 
-    @IBOutlet weak var youtubeBtn: UIButton!
+   
+    @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!

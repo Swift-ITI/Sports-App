@@ -46,6 +46,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource{
         cell.nameLabel.text = "Premiere League: Soccerrrrrrrrrr"
         cell.countryLabel.text = "England"
         
+        
         return cell
     }
     
