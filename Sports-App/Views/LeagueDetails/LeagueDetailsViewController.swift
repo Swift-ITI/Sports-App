@@ -12,32 +12,37 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet var resultsCollectionView: UICollectionView!
     @IBOutlet var teamsCollectionView: UICollectionView!
     @IBOutlet var eventsCollectionView: UICollectionView!
-    
-    var teams:[Teams] = []
-    var events:[Event] = []
-    var results:[Result] = []
-    var leagueId:Int?
-    var sportId:String?
+
+    var teams: [Teams] = []
+    var events: [Event] = []
+    var results: [Result] = []
+    var leagueId: Int?
+    var sportId: String?
     var league_country: String?
     var leagueVM = LeagueDetailsVM()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
+
+        // MARK: RegisterCells
         let eventNib = UINib(nibName: "EventCVCell", bundle: nil)
         let resultNib = UINib(nibName: "ResultCVCell", bundle: nil)
         let teamNib = UINib(nibName: "TeamCVCell", bundle: nil)
-
         resultsCollectionView.register(resultNib, forCellWithReuseIdentifier: "resultCell")
         eventsCollectionView.register(eventNib, forCellWithReuseIdentifier: "eventCell")
         teamsCollectionView.register(teamNib, forCellWithReuseIdentifier: "teamCell")
+
+        // MARK: NavBar Item
+
         let rightButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(printAdd))
         navigationItem.rightBarButtonItem = rightButton
-        
-        
-        leagueVM.getTeams(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
-        leagueVM.getResults(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
-        leagueVM.getEvents(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
-        
+
+        // MARK: FetchData
+
+        leagueVM.getTeams(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
+        leagueVM.getResults(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
+        leagueVM.getEvents(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
         leagueVM.bindTeamsToLeagueDVC = { () in
             self.renderTeams()
         }
@@ -52,11 +57,6 @@ class LeagueDetailsViewController: UIViewController {
         eventsCollectionView.reloadData()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        resultsCollectionView.reloadData()
-        teamsCollectionView.reloadData()
-        eventsCollectionView.reloadData()
-    }
 
     @objc func printAdd() {
         print("Added")
@@ -64,9 +64,11 @@ class LeagueDetailsViewController: UIViewController {
 }
 
 extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     func setDelegates() {
-        resultsCollectionView.delegate = self
+        
         resultsCollectionView.dataSource = self
+        resultsCollectionView.delegate = self
 
         eventsCollectionView.dataSource = self
         eventsCollectionView.delegate = self
@@ -75,35 +77,29 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
         teamsCollectionView.dataSource = self
     }
 
-    func registerNibs() {
-        let eventNib = UINib(nibName: "EventCVCell", bundle: nil)
-        let resultNib = UINib(nibName: "ResultCVCell", bundle: nil)
-        let teamNib = UINib(nibName: "TeamCVCell", bundle: nil)
-
-        resultsCollectionView.register(resultNib, forCellWithReuseIdentifier: "resultCell")
-        eventsCollectionView.register(eventNib, forCellWithReuseIdentifier: "eventCell")
-        teamsCollectionView.register(teamNib, forCellWithReuseIdentifier: "teamsCell")
-    }
+    // MARK: Number of Cells
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case eventsCollectionView:
-            return self.events.count
+            return events.count
 //            return 5
         case resultsCollectionView:
-                return self.results.count
+            return results.count
 //                return 10
         case teamsCollectionView:
-                return self.teams.count
+            return teams.count
 //                return 10
         default:
             return 1
         }
     }
-
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
+
+    
+    // MARK: Dimensions
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
@@ -112,37 +108,39 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
         case resultsCollectionView:
             return CGSize(width: resultsCollectionView.frame.width - 16, height: resultsCollectionView.frame.height / 10)
         case teamsCollectionView:
-                return CGSize(width: teamsCollectionView.frame.width / 3, height: teamsCollectionView.frame.height - 20)
+            return CGSize(width: teamsCollectionView.frame.width / 3, height: teamsCollectionView.frame.height - 20)
         default:
             return CGSize(width: 100, height: 100)
         }
     }
 
+    // MARK: Cells
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case eventsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! EventCVCell
-                cell.awayImageE.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? ""))
-                cell.homeImageE.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? ""))
-                cell.dateLabel.text = events[indexPath.row].event_date
-                cell.timeLabel.text = events[indexPath.row].event_time
+            cell.awayImageE.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? ""))
+            cell.homeImageE.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? ""))
+            cell.dateLabel.text = events[indexPath.row].event_date
+            cell.timeLabel.text = events[indexPath.row].event_time
 //            cell.awayImageE.image = UIImage(named: "SplashLogo")
 //            cell.homeImageE.image = UIImage(named: "SplashLogo")
             return cell
         case teamsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as! TeamCVCell
-                cell.teamLabel.text = teams[indexPath.row].team_name
-                cell.teamLogo.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
+            cell.teamLabel.text = teams[indexPath.row].team_name
+            cell.teamLogo.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
 //                cell.teamLabel.text = "Team +"
 //                cell.teamLogo.image = UIImage(named: "SplashLogo")
-                return cell
+            return cell
         case resultsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "resultCell", for: indexPath) as! ResultCVCell
-                cell.awayImage.kf.setImage(with:URL(string: results[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                cell.homeImage.kf.setImage(with:URL(string: results[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                cell.dateLabel.text = results[indexPath.row].event_date
-                cell.resultLabel.text = results[indexPath.row].event_final_result
-                cell.timeLabel.text = results[indexPath.row].event_time
+            cell.awayImage.kf.setImage(with: URL(string: results[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+            cell.homeImage.kf.setImage(with: URL(string: results[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+            cell.dateLabel.text = results[indexPath.row].event_date
+            cell.resultLabel.text = results[indexPath.row].event_final_result
+            cell.timeLabel.text = results[indexPath.row].event_time
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "default", for: indexPath)
@@ -150,13 +148,18 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
         }
     }
 
+    // MARK: Navigation
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case teamsCollectionView:
             let teamDetailsVC = UIStoryboard(name: "TeamDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "teamDetails") as! TeamDetailsViewController
             teamDetailsVC.team = teams[indexPath.row]
-            teamDetailsVC.league_name = self.league_country
-            navigationController?.pushViewController(teamDetailsVC, animated: true)
+            teamDetailsVC.league_name = league_country
+
+//            navigationController?.pushViewController(teamDetailsVC, animated: true)
+            teamDetailsVC.modalPresentationStyle = .fullScreen
+            present(teamDetailsVC, animated: true)
 //            performSegue(withIdentifier: "gotoTeamDetails", sender: self)
         default:
             print("hii")
@@ -164,24 +167,33 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
     }
 }
 
+    //MARK: Rendering
 
-extension LeagueDetailsViewController{
-    func renderTeams(){
+extension LeagueDetailsViewController {
+    func renderTeams() {
         DispatchQueue.main.async {
             self.teams = self.leagueVM.teams
             self.teamsCollectionView.reloadData()
         }
     }
-    func renderResults(){
+
+    func renderResults() {
         DispatchQueue.main.async {
             self.results = self.leagueVM.results
             self.resultsCollectionView.reloadData()
         }
     }
-    func renderEvents(){
+
+    func renderEvents() {
         DispatchQueue.main.async {
             self.events = self.leagueVM.events
             self.eventsCollectionView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        resultsCollectionView.reloadData()
+        teamsCollectionView.reloadData()
+        eventsCollectionView.reloadData()
     }
 }

@@ -22,6 +22,7 @@ class TeamDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         let nib = UINib(nibName: "CustomTableCell", bundle: nil)
         tableView_teamDetails.register(nib, forCellReuseIdentifier: "leagueCell")
         //self.renderImage()
@@ -30,6 +31,14 @@ class TeamDetailsViewController: UIViewController {
         stadium_Image.image = UIImage(named: "stadium")
         teamLogoImage.kf.setImage(with: URL(string: team?.team_logo ?? ""))
         players = team?.players
+        tableView_teamDetails.reloadData()
+        
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))
+        swipe.direction = .down
+        
+        self.view.addGestureRecognizer(swipe)
+        
+        
     }
     
 
@@ -61,6 +70,7 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.imgView.kf.setImage(with: URL(string: players?[indexPath.row].player_image ?? ""))
         cell.nameLabel.text = players?[indexPath.row].player_name
         cell.countryLabel.text = players?[indexPath.row].player_type
+        cell.numberLabel.text = players?[indexPath.row].player_number
         
         return cell
     }
@@ -72,12 +82,10 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource{
     
 }
 
-//extension TeamDetailsViewController{
-//    func renderImage(){
-//
-//        teamLogoImage.image = UIImage(named: "SplashLogo")
-//        teamLogoImage.layer.cornerRadius = teamLogoImage.frame.height/2
-//        teamLogoImage.layer.borderColor = Color.accentColor.cgColor
-//        teamLogoImage.layer.borderWidth = 1.5
-//    }
-//}
+extension TeamDetailsViewController{
+
+    @objc func dismissVC(){
+        self.dismiss(animated: true)
+    }
+    
+}

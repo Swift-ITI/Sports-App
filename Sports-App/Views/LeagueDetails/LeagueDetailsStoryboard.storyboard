@@ -72,7 +72,7 @@
                         <outlet property="eventsCollectionView" destination="Zjj-yH-eAH" id="H9y-aR-yBs"/>
                         <outlet property="resultsCollectionView" destination="79F-hG-MXZ" id="sBl-6R-EiO"/>
                         <outlet property="teamsCollectionView" destination="le3-Pj-mnU" id="2rM-oR-2e7"/>
-                        <segue destination="iX0-zq-mhX" kind="presentation" identifier="gotoTeamDetails" id="e4E-Np-8XW"/>
+                        <segue destination="iX0-zq-mhX" kind="presentation" identifier="gotoTeamDetails" modalPresentationStyle="automatic" id="e4E-Np-8XW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
