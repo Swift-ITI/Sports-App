@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class DBManager: DBSavingProtocol, DBReadingProtocol, DBDeletingProtocol{
+class DBManager: SAVE_CORE, FETCH_CORE, DELETE_CORE{
 
     static func saveData(appDelegate: AppDelegate, League: League) {
         let managedContext = appDelegate.persistentContainer.viewContext

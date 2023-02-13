@@ -8,14 +8,14 @@
 import Foundation
 import CoreData
 
-protocol DBSavingProtocol{
+protocol SAVE_CORE{
     static func saveData(appDelegate: AppDelegate, League: League)
 }
 
-protocol DBReadingProtocol{
+protocol FETCH_CORE{
     static func fetchData(appDelegate: AppDelegate)-> [NSManagedObject]
 }
 
-protocol DBDeletingProtocol{
+protocol DELETE_CORE{
     static func deleteLeagueFromFavourites(appDelegate: AppDelegate, League: League)
 }
