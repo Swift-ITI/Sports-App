@@ -73,20 +73,36 @@ class LeagueDetailsViewController: UIViewController {
     
     @objc func saveToCoreData(){
         
-        let entity = NSEntityDescription.entity(forEntityName: "Leagues", in: managedContext)
-        let league = NSManagedObject(entity: entity!, insertInto: managedContext)
-        league.setValue(leagueId, forKey: "id")
-        league.setValue(currentLeague.league_name, forKey: "name")
-        league.setValue(currentLeague.country_name, forKey: "country")
-        league.setValue(currentLeague.league_logo, forKey: "logo")
-        do{
-            try managedContext.save()
-            print("Saved")
-        }catch{
-            print(String(describing: error))
+        if rightButton?.image == UIImage(systemName: "heart.fill"){
+            for league in likedLeagues{
+                if league.value(forKey: "id" ) as? Int == currentLeague.league_key{
+                    managedContext.delete(league)
+                    do{
+                        try managedContext.save()
+                        rightButton?.image = UIImage(systemName: "heart")
+                    }catch{
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }else{
+            let entity = NSEntityDescription.entity(forEntityName: "Leagues", in: managedContext)
+            let league = NSManagedObject(entity: entity!, insertInto: managedContext)
+            league.setValue(leagueId, forKey: "id")
+            league.setValue(currentLeague.league_name, forKey: "name")
+            league.setValue(currentLeague.country_name, forKey: "country")
+            league.setValue(currentLeague.league_logo, forKey: "logo")
+            do{
+                try managedContext.save()
+                print("Saved")
+            }catch{
+                print(String(describing: error))
+            }
+            rightButton?.image = UIImage(systemName: "heart.fill")
+            showToastMessage(message: "Added !", color: .blue)
+            
         }
-        rightButton?.image = UIImage(systemName: "heart.fill")
-        showToastMessage(message: "Added !", color: .blue)
+        
             
     }
     
