@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Leagues" representedClassName="Leagues" syncable="YES" codeGenerationType="class">
         <attribute name="country" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="logo" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>

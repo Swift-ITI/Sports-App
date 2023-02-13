@@ -38,7 +38,9 @@ class TeamDetailsViewController: UIViewController {
         
         self.view.addGestureRecognizer(swipe)
         
-        
+    }
+    @objc func dismissVC(){
+        self.dismiss(animated: true)
     }
     
 
@@ -53,7 +55,7 @@ class TeamDetailsViewController: UIViewController {
     */
 
 }
-
+// MARK: Rendering
 extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource{
    
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -82,10 +84,3 @@ extension TeamDetailsViewController: UITableViewDelegate, UITableViewDataSource{
     
 }
 
-extension TeamDetailsViewController{
-
-    @objc func dismissVC(){
-        self.dismiss(animated: true)
-    }
-    
-}

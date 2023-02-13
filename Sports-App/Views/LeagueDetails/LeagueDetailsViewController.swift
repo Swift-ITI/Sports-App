@@ -25,10 +25,8 @@ class LeagueDetailsViewController: UIViewController {
     //var isLiked = UserDefaults.standard
     var isLiked = false
     var currentLeague: League = League()
-    var likedLeagues: [League] = []
-    //var offlineLeague: [NSManagedObject]?
+    var likedLeagues: [NSManagedObject]=[]
     var managedContext: NSManagedObjectContext!
-    var appDelegate:AppDelegate?
     var rightButton:UIBarButtonItem?
     
     override func viewDidLoad() {
@@ -39,17 +37,20 @@ class LeagueDetailsViewController: UIViewController {
         let eventNib = UINib(nibName: "EventCVCell", bundle: nil)
         let resultNib = UINib(nibName: "ResultCVCell", bundle: nil)
         let teamNib = UINib(nibName: "TeamCVCell", bundle: nil)
-       
         resultsCollectionView.register(resultNib, forCellWithReuseIdentifier: "resultCell")
         eventsCollectionView.register(eventNib, forCellWithReuseIdentifier: "eventCell")
         teamsCollectionView.register(teamNib, forCellWithReuseIdentifier: "teamCell")
         
+        //MARK: Fav Btn
          rightButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(saveToCoreData))
         navigationItem.rightBarButtonItem = rightButton
         
         //MARK: CoreData
-        appDelegate = UIApplication.shared.delegate as? AppDelegate
-        managedContext = appDelegate?.persistentContainer.viewContext
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        managedContext = appDelegate.persistentContainer.viewContext
+        likedLeagues = fetchDataFromCore()
+        
+        //MARK: FetchData
         leagueVM.getTeams(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
         leagueVM.getResults(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
         leagueVM.getEvents(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
@@ -63,6 +64,7 @@ class LeagueDetailsViewController: UIViewController {
         leagueVM.bindEventsToLeagueDVC = { () in
             self.renderEvents()
         }
+        
         resultsCollectionView.reloadData()
         teamsCollectionView.reloadData()
         eventsCollectionView.reloadData()
@@ -70,12 +72,22 @@ class LeagueDetailsViewController: UIViewController {
     }
     
     @objc func saveToCoreData(){
-        DBManager.saveData(appDelegate: appDelegate!, League: currentLeague)
-        isLiked = true
-        rightButton?.image = UIImage(systemName: "heart.fill")
-        showToastMessage(message: "Done", color: .blue)
-        //print("add2")
         
+        let entity = NSEntityDescription.entity(forEntityName: "Leagues", in: managedContext)
+        let league = NSManagedObject(entity: entity!, insertInto: managedContext)
+        league.setValue(leagueId, forKey: "id")
+        league.setValue(currentLeague.league_name, forKey: "name")
+        league.setValue(currentLeague.country_name, forKey: "country")
+        league.setValue(currentLeague.league_logo, forKey: "logo")
+        do{
+            try managedContext.save()
+            print("Saved")
+        }catch{
+            print(String(describing: error))
+        }
+        rightButton?.image = UIImage(systemName: "heart.fill")
+        showToastMessage(message: "Added !", color: .blue)
+            
     }
     
     
@@ -83,7 +95,7 @@ class LeagueDetailsViewController: UIViewController {
 
 
 extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+    //MARK: Delegates
     func setDelegates() {
         
         resultsCollectionView.dataSource = self
@@ -97,7 +109,6 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
     }
 
     // MARK: Number of Cells
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case eventsCollectionView:
@@ -220,25 +231,29 @@ extension LeagueDetailsViewController {
 
 extension LeagueDetailsViewController{
     
-//    func showAlertNotConnected() {
-//        let alert = UIAlertController(title: "Not Connected!", message: "Please, Check the internet connection.", preferredStyle: UIAlertController.Style.alert)
-//
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-//
-//        self.present(alert, animated: true, completion: nil)
-//    }
+    //MARK: CoreData
+    func fetchDataFromCore() -> [NSManagedObject] {
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Leagues")
+        do{
+            self.likedLeagues = try managedContext.fetch(fetchRequest)
+        }catch let error{
+            print(error.localizedDescription)
+        }
+        return self.likedLeagues
+        
+    }
     
     func checkFavouriteLeague() {
-        for item in likedLeagues {
-            if item.league_key ==  leagueId{
+        for league in likedLeagues{
+            if league.value(forKey: "id") as? Int == self.leagueId{
                 rightButton?.image = UIImage(systemName: "heart.fill")
-                isLiked = true
-                //currentLeague?.isLiked = true
-            } else {
-                rightButton?.image = UIImage(systemName: "heart")
+                print("yes")
+            }else{
+                print("No")
             }
         }
-        //ProgressHUD.dismiss()
+        
     }
     
     func showToastMessage(message: String, color: UIColor) {
@@ -259,26 +274,4 @@ extension LeagueDetailsViewController{
             toastLabel.removeFromSuperview()
         }
     }
-
-
-//    func saveData(League: League){
-//
-//        let entity = NSEntityDescription.entity(forEntityName: "League", in: managedContext)
-//            let champ = NSManagedObject(entity: entity!, insertInto: managedContext)
-//            champ.setValue(League.league_name, forKey: "name")
-//            champ.setValue(League.country_name, forKey: "country")
-//            champ.setValue(League.league_logo, forKey: "logo")
-//
-//            do{
-//                try managedContext.save()
-//            }catch let error{
-//                print(error.localizedDescription)
-//            }
-//
-//            print("Saved!")
-//            self.isLiked.set(true, forKey: "T")
-//    }
-
-
-
 }

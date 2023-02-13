@@ -64,7 +64,7 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetailsVC = UIStoryboard(name: "LeagueDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
-        leagueDetailsVC.currentLeague.league_key = leaguesArray?[indexPath.row].league_key
+        leagueDetailsVC.currentLeague = (leaguesArray?[indexPath.row])!
         leagueDetailsVC.leagueId = leaguesArray?[indexPath.row].league_key
         leagueDetailsVC.league_country = leaguesArray?[indexPath.row].country_name
         leagueDetailsVC.sportId = self.sportID
@@ -80,14 +80,4 @@ extension LeaguesViewController {
             self.leaguesTableView.reloadData()
         }
     }
-
-//    @objc func goToYouTube() {
-//        let youtubeID: String = ""
-//        if let youtubeURL = URL(string: "youtube://\(youtubeID)"), UIApplication.shared.canOpenURL(youtubeURL) {
-//            UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
-//        } else {
-//            let youtubeURL = URL(string: "https://www.youtube.com/watch?v=\(youtubeID)")
-//            UIApplication.shared.open(youtubeURL!, options: [:], completionHandler: nil)
-//        }
-//    }
 }
