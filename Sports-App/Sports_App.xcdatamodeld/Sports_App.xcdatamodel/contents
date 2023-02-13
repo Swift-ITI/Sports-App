@@ -5,5 +5,6 @@
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="logo" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="sport" optional="YES" attributeType="String"/>
     </entity>
 </model>

@@ -69,6 +69,8 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
         leagueDetailsVC.league_country = leaguesArray?[indexPath.row].country_name
         leagueDetailsVC.sportId = self.sportID
         navigationController?.pushViewController(leagueDetailsVC, animated: true)
+//        leagueDetailsVC.modalPresentationStyle = .fullScreen
+//        self.present(leagueDetailsVC, animated: true)
 //        performSegue(withIdentifier: "goToDetails", sender: self)
     }
 }

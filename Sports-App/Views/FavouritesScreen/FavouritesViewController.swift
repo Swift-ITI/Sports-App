@@ -28,7 +28,6 @@ class FavouritesViewController: UIViewController {
         managedContext = appDelegate?.persistentContainer.viewContext
         let nib = UINib(nibName: "CustomTableCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "leagueCell")
-        
         tableView.reloadData()
     }
     
@@ -66,11 +65,16 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let leagueDetailsVC = UIStoryboard(name: "LeagueDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
         if reachability.isReachable(){
-            let temp: NSManagedObject = likedLeagues[indexPath.row]
-            leagueDetailsVC.currentLeague.league_key = temp.value(forKey: "id") as? Int ?? 0
+            let leagueDetailsVC = UIStoryboard(name: "LeagueDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+            let temp:NSManagedObject = likedLeagues[indexPath.row]
+            leagueDetailsVC.leagueId = temp.value(forKey: "id") as? Int ?? 0
+            leagueDetailsVC.sportId = temp.value(forKey: "sport") as? String ?? ""
+            
+            leagueDetailsVC.modalPresentationStyle = .fullScreen
             navigationController?.pushViewController(leagueDetailsVC, animated: true)
+            
+//            self.present(leagueDetailsVC, animated: true)
         }else{
             print("Network is not connected\n")
             self.showAlertNotConnected()
