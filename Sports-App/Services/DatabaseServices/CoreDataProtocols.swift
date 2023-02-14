@@ -5,17 +5,17 @@
 //  Created by MESHO on 12/02/2023.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
-protocol DBSavingProtocol{
-    static func saveData(appDelegate: AppDelegate, League: League)
+protocol SAVE_CORE {
+    func saveData(leagueC: League, sportId: String)
 }
 
-protocol DBReadingProtocol{
-    static func fetchData(appDelegate: AppDelegate)-> [NSManagedObject]
+protocol FETCH_CORE {
+    func fetchData() -> [NSManagedObject]
 }
 
-protocol DBDeletingProtocol{
-    static func deleteLeagueFromFavourites(appDelegate: AppDelegate, League: League)
+protocol DELETE_CORE {
+    func deleteLeagueFromFavourites(leagueId: Int)
 }

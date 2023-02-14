@@ -5,9 +5,9 @@
 //  Created by Adham Samer on 06/02/2023.
 //
 
+import CoreData
 import Foundation
 import UIKit
-import CoreData
 
 class LeagueDetailsViewController: UIViewController {
     @IBOutlet var resultsCollectionView: UICollectionView!
@@ -23,39 +23,42 @@ class LeagueDetailsViewController: UIViewController {
     var sportId:String?
     var league_country: String?
     var leagueVM = LeagueDetailsVM()
-    //var isLiked = UserDefaults.standard
+    // var isLiked = UserDefaults.standard
     var isLiked = false
-    var currentLeague: League = League()
-    var likedLeagues: [League] = []
-    //var offlineLeague: [NSManagedObject]?
+    var currentLeague = League()
+    var likedLeagues: [NSManagedObject] = []
     var managedContext: NSManagedObjectContext!
-    var appDelegate:AppDelegate?
-    var rightButton:UIBarButtonItem?
-    
+    var rightButton: UIBarButtonItem?
+    var coreDataObject:DBManager?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
 
         // MARK: RegisterCells
+
         let eventNib = UINib(nibName: "EventCVCell", bundle: nil)
         let resultNib = UINib(nibName: "ResultCVCell", bundle: nil)
         let teamNib = UINib(nibName: "TeamCVCell", bundle: nil)
-       
         resultsCollectionView.register(resultNib, forCellWithReuseIdentifier: "resultCell")
         eventsCollectionView.register(eventNib, forCellWithReuseIdentifier: "eventCell")
         teamsCollectionView.register(teamNib, forCellWithReuseIdentifier: "teamCell")
-        
-         rightButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(saveToCoreData))
+
+        // MARK: Fav Btn
+
+        rightButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(saveToCoreData))
         navigationItem.rightBarButtonItem = rightButton
+
+        // MARK: CoreData
         
-        //MARK: CoreData
-        appDelegate = UIApplication.shared.delegate as? AppDelegate
-        managedContext = appDelegate?.persistentContainer.viewContext
-        leagueVM.getTeams(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
-        leagueVM.getResults(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
-        leagueVM.getEvents(leagueId: leagueId ?? 177,sportId:sportId ?? "football")
+        coreDataObject = DBManager.getInstance()
+        likedLeagues = coreDataObject?.fetchData() ?? []
+
+        // MARK: FetchData
+        leagueVM.getTeams(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
+        leagueVM.getResults(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
+        leagueVM.getEvents(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
         leagueVM.getTennisPlayers(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
-        
         leagueVM.bindTeamsToLeagueDVC = { () in
             self.renderTeams()
         }
@@ -71,26 +74,36 @@ class LeagueDetailsViewController: UIViewController {
         resultsCollectionView.reloadData()
         teamsCollectionView.reloadData()
         eventsCollectionView.reloadData()
-        self.checkFavouriteLeague()
+        checkFavouriteLeague()
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))
+        swipe.direction = .down
+
+        view.addGestureRecognizer(swipe)
     }
-    
-    @objc func saveToCoreData(){
-        DBManager.saveData(appDelegate: appDelegate!, League: currentLeague)
-        isLiked = true
-        rightButton?.image = UIImage(systemName: "heart.fill")
-        showToastMessage(message: "Done", color: .blue)
-        //print("add2")
-        
+
+    @objc func dismissVC() {
+        dismiss(animated: true)
     }
-    
-    
+
+    @objc func saveToCoreData() {
+        if rightButton?.image == UIImage(systemName: "heart.fill") {
+            coreDataObject?.deleteLeagueFromFavourites(leagueId:leagueId ?? 0 )
+            rightButton?.image = UIImage(systemName: "heart")
+            showToastMessage(message: "Removed !", color: .red)
+            
+        } else {
+            coreDataObject?.saveData( leagueC: currentLeague, sportId: sportId ?? "")
+            rightButton?.image = UIImage(systemName: "heart.fill")
+            showToastMessage(message: "Added !", color: .systemBlue)
+        }
+        self.viewWillAppear(false)
+    }
 }
 
-
 extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+    // MARK: Delegates
+
     func setDelegates() {
-        
         resultsCollectionView.dataSource = self
         resultsCollectionView.delegate = self
 
@@ -123,6 +136,7 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
             return 1
         }
     }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
@@ -144,7 +158,7 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
     }
 
     // MARK: Cells
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case eventsCollectionView:
@@ -240,14 +254,14 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
 //            navigationController?.pushViewController(teamDetailsVC, animated: true)
             teamDetailsVC.modalPresentationStyle = .fullScreen
             present(teamDetailsVC, animated: true)
-//            performSegue(withIdentifier: "gotoTeamDetails", sender: self)
+
         default:
             print("hii")
         }
     }
 }
 
-    //MARK: Rendering
+// MARK: Rendering
 
 extension LeagueDetailsViewController {
     func renderTeams() {
@@ -279,39 +293,15 @@ extension LeagueDetailsViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.viewDidLoad()
+        viewDidLoad()
         resultsCollectionView.reloadData()
         teamsCollectionView.reloadData()
         eventsCollectionView.reloadData()
     }
-}
 
-extension LeagueDetailsViewController{
-    
-//    func showAlertNotConnected() {
-//        let alert = UIAlertController(title: "Not Connected!", message: "Please, Check the internet connection.", preferredStyle: UIAlertController.Style.alert)
-//
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-//
-//        self.present(alert, animated: true, completion: nil)
-//    }
-    
-    func checkFavouriteLeague() {
-        for item in likedLeagues {
-            if item.league_key ==  leagueId{
-                rightButton?.image = UIImage(systemName: "heart.fill")
-                isLiked = true
-                //currentLeague?.isLiked = true
-            } else {
-                rightButton?.image = UIImage(systemName: "heart")
-            }
-        }
-        //ProgressHUD.dismiss()
-    }
-    
     func showToastMessage(message: String, color: UIColor) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.width/2-120, y: self.view.frame.height-100, width: 260, height: 30))
-        
+        let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 120, y: view.frame.height - 130, width: 260, height: 30))
+
         toastLabel.textAlignment = .center
         toastLabel.backgroundColor = color
         toastLabel.textColor = .black
@@ -319,34 +309,26 @@ extension LeagueDetailsViewController{
         toastLabel.layer.cornerRadius = 10
         toastLabel.clipsToBounds = true
         toastLabel.text = message
-        self.view.addSubview(toastLabel)
-        
+        view.addSubview(toastLabel)
+
         UIView.animate(withDuration: 3.0, delay: 1.0, options: .curveEaseIn, animations: {
             toastLabel.alpha = 0.0
-        }) { (isCompleted) in
+        }) { _ in
             toastLabel.removeFromSuperview()
         }
     }
+}
 
-
-//    func saveData(League: League){
-//
-//        let entity = NSEntityDescription.entity(forEntityName: "League", in: managedContext)
-//            let champ = NSManagedObject(entity: entity!, insertInto: managedContext)
-//            champ.setValue(League.league_name, forKey: "name")
-//            champ.setValue(League.country_name, forKey: "country")
-//            champ.setValue(League.league_logo, forKey: "logo")
-//
-//            do{
-//                try managedContext.save()
-//            }catch let error{
-//                print(error.localizedDescription)
-//            }
-//
-//            print("Saved!")
-//            self.isLiked.set(true, forKey: "T")
-//    }
-
-
-
+extension LeagueDetailsViewController {
+    // MARK: CoreData
+    func checkFavouriteLeague() {
+        for league in likedLeagues {
+            if league.value(forKey: "id") as? Int == leagueId {
+                rightButton?.image = UIImage(systemName: "heart.fill")
+                print("yes")
+            } else {
+                print("No")
+            }
+        }
+    }
 }
