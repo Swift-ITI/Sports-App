@@ -60,7 +60,7 @@ class DBManager: SAVE_CORE, FETCH_CORE, DELETE_CORE {
     }
 
     func deleteLeagueFromFavourites(leagueId: Int) {
-        var leagues = fetchData()
+        let leagues = fetchData()
         for league in leagues {
             if league.value(forKey: "id") as! Int == leagueId{
                 managedContext.delete(league)

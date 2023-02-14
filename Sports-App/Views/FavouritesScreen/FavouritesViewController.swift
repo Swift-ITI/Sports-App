@@ -14,7 +14,7 @@ class FavouritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var likedLeagues: [NSManagedObject] = []
     var managedContext: NSManagedObjectContext!
-    
+    var coreDataManager:DBManager?
     let reachability: Reachability = Reachability.forInternetConnection()
 
     override func viewDidLoad() {
@@ -24,8 +24,8 @@ class FavouritesViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        managedContext = appDelegate?.persistentContainer.viewContext
+        coreDataManager = DBManager.getInstance()
+        likedLeagues = coreDataManager?.fetchData() ?? []
         let nib = UINib(nibName: "CustomTableCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "leagueCell")
         tableView.reloadData()
@@ -34,7 +34,7 @@ class FavouritesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //super.viewWillAppear(animated)
         
-        //likedLeagues = DBManager.fetchData(appDelegate: appDelegate)
+        likedLeagues = coreDataManager?.fetchData() ?? []
         tableView.reloadData()
     }
 
@@ -47,14 +47,14 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchData().count
+        return likedLeagues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! CustomTableCell
 
-        let temp: NSManagedObject = fetchData()[indexPath.row]
+        let temp: NSManagedObject = likedLeagues[indexPath.row]
         cell.nameLabel.text = temp.value(forKey: "name") as? String
         cell.countryLabel.text = temp.value(forKey: "country") as? String
         cell.imgView.kf.setImage(with: URL(string: temp.value(forKey: "logo") as? String ?? ""))
@@ -88,13 +88,8 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-                managedContext.delete(likedLeagues[indexPath.row])
+            coreDataManager?.deleteLeagueFromFavourites(leagueId: likedLeagues[indexPath.row].value(forKey: "id") as! Int)
                 likedLeagues.remove(at: indexPath.row)
-                do{
-                    try managedContext.save()
-                }catch let error{
-                    print(error.localizedDescription)
-                }
             
                 tableView.deleteRows(at: [indexPath], with: .left)
                 tableView.reloadData()
@@ -114,16 +109,5 @@ extension FavouritesViewController{
         self.present(alert, animated: true, completion: nil)
     }
     
-    func fetchData() -> [NSManagedObject] {
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Leagues")
-        do{
-            self.likedLeagues = try managedContext.fetch(fetchRequest)
-        }catch let error{
-            print(error.localizedDescription)
-        }
-        return self.likedLeagues
-        
-    }
     
 }
