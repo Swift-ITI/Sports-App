@@ -46,6 +46,7 @@
 		DED942BA299046760092E969 /* LeaguesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DED942B6299046750092E969 /* LeaguesStoryboard.storyboard */; };
 		DED942BB299046760092E969 /* LeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED942B7299046750092E969 /* LeaguesViewController.swift */; };
 		DEE32DA92991DA4E0078107F /* LeagueDetailsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE32DA82991DA4E0078107F /* LeagueDetailsStoryboard.storyboard */; };
+		DEE611A2299C1FA100D66D84 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE611A0299C1FA100D66D84 /* NetworkServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		DED942B6299046750092E969 /* LeaguesStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LeaguesStoryboard.storyboard; sourceTree = "<group>"; };
 		DED942B7299046750092E969 /* LeaguesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaguesViewController.swift; sourceTree = "<group>"; };
 		DEE32DA82991DA4E0078107F /* LeagueDetailsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LeagueDetailsStoryboard.storyboard; sourceTree = "<group>"; };
+		DEE611A0299C1FA100D66D84 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		E2662AB9988C0254C424F063 /* Pods-Sports-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sports-App.debug.xcconfig"; path = "Target Support Files/Pods-Sports-App/Pods-Sports-App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				DE1FB3C6298A006D0071268A /* Sports_AppTests.swift */,
+				DEE611A0299C1FA100D66D84 /* NetworkServiceTests.swift */,
 			);
 			path = "Sports-AppTests";
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEE611A2299C1FA100D66D84 /* NetworkServiceTests.swift in Sources */,
 				DE1FB3C7298A006D0071268A /* Sports_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
