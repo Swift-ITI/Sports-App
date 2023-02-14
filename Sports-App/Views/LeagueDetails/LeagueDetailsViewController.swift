@@ -28,7 +28,7 @@ class LeagueDetailsViewController: UIViewController {
     var likedLeagues: [NSManagedObject] = []
     var managedContext: NSManagedObjectContext!
     var rightButton: UIBarButtonItem?
-    var coreDataObject:DBManager?
+    var coreDataObject: DBManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,16 +88,16 @@ class LeagueDetailsViewController: UIViewController {
 
     @objc func saveToCoreData() {
         if rightButton?.image == UIImage(systemName: "heart.fill") {
-            coreDataObject?.deleteLeagueFromFavourites(leagueId:leagueId ?? 0 )
+            coreDataObject?.deleteLeagueFromFavourites(leagueId: leagueId ?? 0)
             rightButton?.image = UIImage(systemName: "heart")
             showToastMessage(message: "Removed !", color: .red)
-            
+
         } else {
-            coreDataObject?.saveData( leagueC: currentLeague, sportId: sportId ?? "")
+            coreDataObject?.saveData(leagueC: currentLeague, sportId: sportId ?? "")
             rightButton?.image = UIImage(systemName: "heart.fill")
             showToastMessage(message: "Added !", color: .systemBlue)
         }
-        self.viewWillAppear(false)
+        viewWillAppear(false)
     }
 }
 
@@ -158,16 +158,20 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
         switch collectionView {
         case eventsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! EventCVCell
-                switch self.sportId {
-                    case "basketball":
-                        cell.awayImageE.kf.setImage(with: URL(string: events[indexPath.row].event_away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                        cell.homeImageE.kf.setImage(with: URL(string: events[indexPath.row].event_home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                    default:
-                        cell.awayImageE.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                        cell.homeImageE.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                }
-           
-            cell.dateLabel.text = events[indexPath.row].event_date
+            switch sportId {
+            case "basketball", "cricket":
+                cell.awayImageE.kf.setImage(with: URL(string: events[indexPath.row].event_away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                cell.homeImageE.kf.setImage(with: URL(string: events[indexPath.row].event_home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+            default:
+                cell.awayImageE.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                cell.homeImageE.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+            }
+            switch sportId {
+            case "cricket":
+                cell.dateLabel.text = events[indexPath.row].event_date_start
+            default:
+                cell.dateLabel.text = events[indexPath.row].event_date
+            }
             cell.timeLabel.text = events[indexPath.row].event_time
 //            cell.awayImageE.image = UIImage(named: "SplashLogo")
 //            cell.homeImageE.image = UIImage(named: "SplashLogo")
@@ -181,17 +185,22 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
             return cell
         case resultsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "resultCell", for: indexPath) as! ResultCVCell
-                switch self.sportId {
-                    case "basketball":
-                        cell.awayImage.kf.setImage(with: URL(string: results[indexPath.row].event_away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                        cell.homeImage.kf.setImage(with: URL(string: results[indexPath.row].event_home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                    default:
-                        cell.awayImage.kf.setImage(with: URL(string: results[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                        cell.homeImage.kf.setImage(with: URL(string: results[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-                }
-            
-            cell.dateLabel.text = results[indexPath.row].event_date
-            cell.resultLabel.text = results[indexPath.row].event_final_result
+            switch sportId {
+            case "basketball", "cricket":
+                cell.awayImage.kf.setImage(with: URL(string: results[indexPath.row].event_away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                cell.homeImage.kf.setImage(with: URL(string: results[indexPath.row].event_home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+            default:
+                cell.awayImage.kf.setImage(with: URL(string: results[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                cell.homeImage.kf.setImage(with: URL(string: results[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+            }
+            switch sportId {
+            case "cricket":
+                cell.dateLabel.text = results[indexPath.row].event_date_stop
+                cell.resultLabel.text = (results[indexPath.row].event_home_final_result ?? "") + "\n" + (results[indexPath.row].event_away_final_result ?? "")
+            default:
+                cell.dateLabel.text = results[indexPath.row].event_date
+                cell.resultLabel.text = results[indexPath.row].event_final_result
+            }
             cell.timeLabel.text = results[indexPath.row].event_time
             return cell
         default:
@@ -271,6 +280,7 @@ extension LeagueDetailsViewController {
 
 extension LeagueDetailsViewController {
     // MARK: CoreData
+
     func checkFavouriteLeague() {
         for league in likedLeagues {
             if league.value(forKey: "id") as? Int == leagueId {

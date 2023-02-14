@@ -9,6 +9,7 @@ import Foundation
 class Event: Decodable {
     var event_key: Int?
     var event_date: String?
+    var event_date_start: String?
     var event_time: String?
     var event_home_team: String?
     var event_away_team: String?
@@ -55,10 +56,13 @@ class TeamsResult: Decodable {
 class Result: Decodable {
     var event_key: Int?
     var event_date: String?
+    var event_date_stop: String?
     var event_time: String?
     var event_home_team: String?
     var event_away_team: String?
     var event_final_result: String?
+    var event_home_final_result: String?
+    var event_away_final_result: String?
     var country_name: String?
     var league_name: String?
     var league_key: Int?
