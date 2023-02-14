@@ -43,11 +43,15 @@ class LeagueDetailsService: GET_EVENTS, GET_TEAMS, GET_RESULTS {
             completionHandler(nil)
             return
         }
+
         AF.request(url, method: .get).response { response in
             switch response.result {
             case let .success(data):
+                guard let data = data else { completionHandler(nil)
+                    return
+                }
                 do {
-                    let json = try JSONDecoder().decode(TeamsResult.self, from: data!)
+                    let json = try JSONDecoder().decode(TeamsResult.self, from: data)
                     completionHandler(json)
                 } catch {
                     print(String(describing: error))

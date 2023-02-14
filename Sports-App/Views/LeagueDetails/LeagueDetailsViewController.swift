@@ -28,7 +28,7 @@ class LeagueDetailsViewController: UIViewController {
     var likedLeagues: [NSManagedObject] = []
     var managedContext: NSManagedObjectContext!
     var rightButton: UIBarButtonItem?
-    var coreDataObject: DBManager?
+    var coreDataObject: CoreDataManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +50,8 @@ class LeagueDetailsViewController: UIViewController {
 
         // MARK: CoreData
 
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        managedContext = appDelegate.persistentContainer.viewContext
-        coreDataObject = DBManager.getInstance()
-//        likedLeagues = fetchDataFromCore()
+
+        coreDataObject = CoreDataManager.getInstance()
         likedLeagues = coreDataObject?.fetchData() ?? []
 
         // MARK: FetchData

@@ -6,6 +6,9 @@
 //
 
 import Foundation
+
+//MARK: Events
+
 class Event: Decodable {
     var event_key: Int?
     var event_date: String?
@@ -35,6 +38,8 @@ class EventsResult: Decodable {
     var result: [Event]
 }
 
+//MARK: Teams
+
 class Teams: Decodable {
     var team_key: Int?
     var team_name: String?
@@ -52,6 +57,9 @@ class Player: Decodable{
 class TeamsResult: Decodable {
     var result: [Teams]
 }
+
+
+//MARK: Results
 
 class Result: Decodable {
     var event_key: Int?

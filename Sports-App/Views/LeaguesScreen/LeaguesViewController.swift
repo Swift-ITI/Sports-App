@@ -17,6 +17,7 @@ class LeaguesViewController: UIViewController {
         }
     }
     var leaguesArray: [League]?
+    var cuurentLeague:League?
     var leagueVM: LeaguesVM?
     var sportID: String?
     override func viewDidLoad() {
@@ -63,20 +64,15 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let leagueDetailsVC = UIStoryboard(name: "LeagueDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
-        switch self.sportID {
-        case "tennis":
-            showAlert(Title: "On Preparing Details", Message: "Sorry for this issue, Hope a nice day for You")
-        default:
-            leagueDetailsVC.currentLeague = (leaguesArray?[indexPath.row])!
-            leagueDetailsVC.leagueId = leaguesArray?[indexPath.row].league_key
-            leagueDetailsVC.league_country = leaguesArray?[indexPath.row].country_name
-            leagueDetailsVC.sportId = self.sportID
-            navigationController?.pushViewController(leagueDetailsVC, animated: true)
-        }
-//        leagueDetailsVC.modalPresentationStyle = .fullScreen
-//        self.present(leagueDetailsVC, animated: true)
-//        performSegue(withIdentifier: "goToDetails", sender: self)
+        cuurentLeague = leaguesArray?[indexPath.row]
+        performSegue(withIdentifier: "goToDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let leagueDetailsVC = segue.destination as? LeagueDetailsViewController
+        leagueDetailsVC?.sportId = self.sportID
+        leagueDetailsVC?.leagueId = self.cuurentLeague?.league_key
+        leagueDetailsVC?.currentLeague = self.cuurentLeague!
     }
 }
 
