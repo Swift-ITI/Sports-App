@@ -9,19 +9,19 @@ import CoreData
 import Foundation
 import UIKit
 
-class DBManager: SAVE_CORE, FETCH_CORE, DELETE_CORE {
+class CoreDataManager: SAVE_CORE, FETCH_CORE, DELETE_CORE {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let managedContext: NSManagedObjectContext!
     let entity: NSEntityDescription!
 
-    private static var DBObj: DBManager?
-    public static func getInstance() -> DBManager {
-        if let instance = DBObj {
+    private static var coreDataObj: CoreDataManager?
+    public static func getInstance() -> CoreDataManager {
+        if let instance = coreDataObj {
             return instance
 
         } else {
-            DBObj = DBManager()
-            return DBObj!
+            coreDataObj = CoreDataManager()
+            return coreDataObj!
         }
     }
 
