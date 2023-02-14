@@ -13,6 +13,7 @@ class League: Decodable {
     var league_name: String?
     var country_name: String?
     var league_logo: String?
+    var league_year: String?
 //    var isLiked: Bool = false
 }
 

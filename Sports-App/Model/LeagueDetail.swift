@@ -26,6 +26,20 @@ class Event: Decodable {
     var event_country_key: Int?
     var league_logo: String?
     var country_logo: String?
+    //tennis
+    var event_first_player: String?
+    var event_second_player: String?
+    var event_game_result: String?
+    var event_winner: String?
+    var event_first_player_logo: String?
+    var event_second_player_logo: String?
+    var first_player_key: String?
+    var second_player_key: String?
+    //basket
+    var event_home_team_logo: String?
+    var event_away_team_logo: String?
+    //cricket
+    var event_date_start: String?
 }
 
 class EventsResult: Decodable {
@@ -48,6 +62,32 @@ class Player: Decodable{
 
 class TeamsResult: Decodable {
     var result: [Teams]
+    var tennisResult: [TennisPlayers]
+    
+}
+
+class TennisPlayers: Decodable{
+    var player_key: String?
+    var player_name: String?
+    var player_country: String?
+    var player_bday: String?
+    var player_logo: String?
+    var stats: [Stats]?
+}
+
+class Stats: Decodable{
+    var season: String
+    var type: String?
+    var rank: String?
+    var titles: String?
+    var matches_won: String?
+    var matches_lost: String?
+    var hard_won: String?
+    var hard_lost: String?
+    var clay_won: String?
+    var clay_lost: String?
+    var grass_won: String?
+    var grass_lost: String?
 }
 
 class Result: Decodable {
@@ -70,8 +110,25 @@ class Result: Decodable {
     var event_country_key: Int?
     var league_logo: String?
     var country_logo: String?
+    //tennis
+    var event_first_player: String?
+    var event_second_player: String?
+    var event_game_result: String?
+    var event_winner: String?
+    var event_first_player_logo: String?
+    var event_second_player_logo: String?
+    var first_player_key: String?
+    var second_player_key: String?
+    //basket
+    var event_home_team_logo: String?
+    var event_away_team_logo: String?
+    //cricket
+    var event_date_stop: String?
+    var event_status: String?
 }
 
 class ResultsResult: Decodable {
     var result: [Result]
 }
+
+
