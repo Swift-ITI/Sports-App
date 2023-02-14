@@ -64,11 +64,16 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetailsVC = UIStoryboard(name: "LeagueDetailsStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
-        leagueDetailsVC.currentLeague = (leaguesArray?[indexPath.row])!
-        leagueDetailsVC.leagueId = leaguesArray?[indexPath.row].league_key
-        leagueDetailsVC.league_country = leaguesArray?[indexPath.row].country_name
-        leagueDetailsVC.sportId = self.sportID
-        navigationController?.pushViewController(leagueDetailsVC, animated: true)
+        switch self.sportID {
+        case "tennis":
+            showAlert(Title: "On Preparing Details", Message: "Sorry for this issue, Hope a nice day for You")
+        default:
+            leagueDetailsVC.currentLeague = (leaguesArray?[indexPath.row])!
+            leagueDetailsVC.leagueId = leaguesArray?[indexPath.row].league_key
+            leagueDetailsVC.league_country = leaguesArray?[indexPath.row].country_name
+            leagueDetailsVC.sportId = self.sportID
+            navigationController?.pushViewController(leagueDetailsVC, animated: true)
+        }
 //        leagueDetailsVC.modalPresentationStyle = .fullScreen
 //        self.present(leagueDetailsVC, animated: true)
 //        performSegue(withIdentifier: "goToDetails", sender: self)
@@ -82,4 +87,13 @@ extension LeaguesViewController {
             self.leaguesTableView.reloadData()
         }
     }
+    
+    func showAlert(Title: String, Message: String) {
+        let alert = UIAlertController(title: Title, message: Message, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }

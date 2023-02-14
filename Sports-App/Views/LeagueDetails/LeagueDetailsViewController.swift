@@ -85,13 +85,11 @@ class LeagueDetailsViewController: UIViewController {
     @objc func dismissVC() {
         dismiss(animated: true)
     }
-
+    
+    //MARK: Save_Btn
     @objc func saveToCoreData() {
         if rightButton?.image == UIImage(systemName: "heart.fill") {
-            coreDataObject?.deleteLeagueFromFavourites(leagueId: leagueId ?? 0)
-            rightButton?.image = UIImage(systemName: "heart")
-            showToastMessage(message: "Removed !", color: .red)
-
+            showAlert(Title: "Deleting From Favorites", Message: "Are you sure ?")
         } else {
             coreDataObject?.saveData(leagueC: currentLeague, sportId: sportId ?? "")
             rightButton?.image = UIImage(systemName: "heart.fill")
@@ -291,4 +289,20 @@ extension LeagueDetailsViewController {
             }
         }
     }
+    
+    // MARK: Alert
+    func showAlert(Title: String, Message: String) {
+        let alert = UIAlertController(title: Title, message: Message, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: { [self] action in
+            self.coreDataObject?.deleteLeagueFromFavourites(leagueId: self.leagueId ?? 0)
+            self.rightButton?.image = UIImage(systemName: "heart")
+            showToastMessage(message: "Removed !", color: .red)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
 }

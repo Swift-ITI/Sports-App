@@ -40,6 +40,7 @@ class FavouritesViewController: UIViewController {
 
 }
 
+//MARK: Cells
 extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource{
    
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -88,18 +89,29 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            coreDataManager?.deleteLeagueFromFavourites(leagueId: likedLeagues[indexPath.row].value(forKey: "id") as! Int)
-                likedLeagues.remove(at: indexPath.row)
             
-                tableView.deleteRows(at: [indexPath], with: .left)
+            let alert = UIAlertController(title: "Deleting From Favorites", message: "Are you sure ?", preferredStyle: UIAlertController.Style.alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: { [self] action in
+                self.coreDataManager?.deleteLeagueFromFavourites(leagueId: self.likedLeagues[indexPath.row].value(forKey: "id") as! Int)
+                self.likedLeagues.remove(at: indexPath.row)
+                
+                    tableView.deleteRows(at: [indexPath], with: .left)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        
                 tableView.reloadData()
-            
         } 
     }
     
     
+    
 }
 
+
+
+//MARK: Alerts
 extension FavouritesViewController{
     func showAlertNotConnected() {
         let alert = UIAlertController(title: "Not Connected!", message: "Please, Check the internet connection.", preferredStyle: UIAlertController.Style.alert)

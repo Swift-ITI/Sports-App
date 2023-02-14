@@ -61,11 +61,16 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if reachability.isReachable(){
             let leaguesVC = UIStoryboard(name: "LeaguesStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
-            leaguesVC.sportID = sportsAPI?[indexPath.row] ?? ""
-            navigationController?.pushViewController(leaguesVC, animated: true)
+            switch  sportsAPI?[indexPath.row]{
+            case "hockey","baseball","american-football":
+                showAlertNotConnected(Title: "On preparing Sport", Message: "Sorry for this issue, Hope a nice day for You")
+            default:
+                leaguesVC.sportID = sportsAPI?[indexPath.row] ?? ""
+                navigationController?.pushViewController(leaguesVC, animated: true)
+            }
             
         }else{
-            showAlertNotConnected()
+            showAlertNotConnected(Title: "Internet Connection is Unavailable!", Message: "Please Check the internet connection.")
         }
         //performSegue(withIdentifier: "goToLeagues", sender: self)
         //        let goto = UIStoryboardSegue(identifier: "Main", source: self, destination: leaguesVC) {
@@ -75,13 +80,15 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         //        performSegue(withIdentifier: goto, sender: self)
     }
     
-    func showAlertNotConnected() {
-        let alert = UIAlertController(title: "Not Connected!", message: "Please Check the internet connection.", preferredStyle: UIAlertController.Style.alert)
+    func showAlertNotConnected(Title: String, Message: String) {
+        let alert = UIAlertController(title: Title, message: Message, preferredStyle: UIAlertController.Style.actionSheet)
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
     
 }
 
