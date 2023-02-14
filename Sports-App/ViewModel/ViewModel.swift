@@ -60,7 +60,7 @@ class LeaguesVM {
     func getLeagues(endPoint: String) {
         LeaguesService.fetchLeagues(endPoint: endPoint) { result in
             if let result = result {
-                self.leagues = result.result
+                self.leagues = result
             }
         }
     }
