@@ -22,14 +22,6 @@ final class League_Screen_Tests: XCTestCase {
         network = nil
     }
 
-    func testLoadDataForFootball(){
-        LeaguesService.fetchLeagues(endPoint: "football") { league in
-            XCTAssertNotNil(league)
-            XCTAssertNotEqual(league?.count, 0,"APi Failed")
-        }
-        XCTFail("failed")
-    }
-    
     
     func testLoadDataForFootball2(){
 
@@ -41,7 +33,7 @@ final class League_Screen_Tests: XCTestCase {
                 return
             }
             XCTAssertNotNil(league)
-            XCTAssertNotEqual(league.count, 0, "API failed")
+            XCTAssertNotEqual(league.result.count, 0, "API failed")
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
@@ -60,7 +52,7 @@ final class League_Screen_Tests: XCTestCase {
                 return
             }
             XCTAssertNotNil(league)
-            XCTAssertNotEqual(league.count, 0, "API failed")
+            XCTAssertNotEqual(league.result.count, 0, "API failed")
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
@@ -76,7 +68,7 @@ final class League_Screen_Tests: XCTestCase {
                 return
             }
             XCTAssertNotNil(league)
-            XCTAssertNotEqual(league.count, 0, "API failed")
+            XCTAssertNotEqual(league.result.count, 0, "API failed")
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
@@ -93,7 +85,7 @@ final class League_Screen_Tests: XCTestCase {
                 return
             }
             XCTAssertNotNil(league)
-            XCTAssertNotEqual(league.count, 0, "API failed")
+            XCTAssertNotEqual(league.result.count, 0, "API failed")
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
@@ -110,7 +102,7 @@ final class League_Screen_Tests: XCTestCase {
                 return
             }
             XCTAssertNotNil(league)
-            XCTAssertNotEqual(league.count, 0, "API failed")
+            XCTAssertNotEqual(league.result.count, 0, "API failed")
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
@@ -126,7 +118,7 @@ final class League_Screen_Tests: XCTestCase {
                 return
             }
             XCTAssertNotNil(league)
-            XCTAssertNotEqual(league.count, 0, "API failed")
+            XCTAssertNotEqual(league.result.count, 0, "API failed")
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)

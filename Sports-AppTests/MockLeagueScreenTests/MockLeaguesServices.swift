@@ -16,11 +16,11 @@ class MockLeagueService {
 
 
 extension MockLeagueService: GET_LEAGUES{
-    static func fetchLeagues(endPoint: String, completionHandler: @escaping ([League]?) -> Void) {
+    static func fetchLeagues(endPoint: String, completionHandler: @escaping (LeagueResult?) -> Void) {
         let data = Data(mockItemsJSONResponse.utf8)
         do {
             let response = try JSONDecoder().decode(LeagueResult.self, from: data)
-            completionHandler(response.result)
+            completionHandler(response)
         } catch {
             completionHandler(nil)
         }
