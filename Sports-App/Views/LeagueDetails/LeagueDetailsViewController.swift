@@ -24,10 +24,11 @@ class LeagueDetailsViewController: UIViewController {
     var leagueVM = LeagueDetailsVM()
     // var isLiked = UserDefaults.standard
     var isLiked = false
-    var currentLeague: League = League()
+    var currentLeague = League()
     var likedLeagues: [NSManagedObject] = []
     var managedContext: NSManagedObjectContext!
     var rightButton: UIBarButtonItem?
+    var coreDataObject:DBManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +50,11 @@ class LeagueDetailsViewController: UIViewController {
 
         // MARK: CoreData
 
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        managedContext = appDelegate.persistentContainer.viewContext
-        likedLeagues = fetchDataFromCore()
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        managedContext = appDelegate.persistentContainer.viewContext
+        coreDataObject = DBManager.getInstance()
+//        likedLeagues = fetchDataFromCore()
+        likedLeagues = coreDataObject?.fetchData() ?? []
 
         // MARK: FetchData
 
@@ -85,9 +88,14 @@ class LeagueDetailsViewController: UIViewController {
 
     @objc func saveToCoreData() {
         if rightButton?.image == UIImage(systemName: "heart.fill") {
-            deleteFromCore(leagueId: leagueId ?? 0)
+            coreDataObject?.deleteLeagueFromFavourites(leagueId:leagueId ?? 0 )
+            rightButton?.image = UIImage(systemName: "heart")
+            showToastMessage(message: "Removed !", color: .red)
+            
         } else {
-            saveToCore()
+            coreDataObject?.saveData( leagueC: currentLeague, sportId: sportId ?? "")
+            rightButton?.image = UIImage(systemName: "heart.fill")
+            showToastMessage(message: "Added !", color: .systemBlue)
         }
         self.viewWillAppear(false)
     }
@@ -249,50 +257,6 @@ extension LeagueDetailsViewController {
 
 extension LeagueDetailsViewController {
     // MARK: CoreData
-
-    func fetchDataFromCore() -> [NSManagedObject] {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Leagues")
-        do {
-            likedLeagues = try managedContext.fetch(fetchRequest)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        return likedLeagues
-    }
-
-    func deleteFromCore(leagueId: Int) {
-        for league in likedLeagues {
-            if league.value(forKey: "id") as? Int == leagueId {
-                managedContext.delete(league)
-                do {
-                    try managedContext.save()
-                    rightButton?.image = UIImage(systemName: "heart")
-                    showToastMessage(message: "Removed !", color: .red)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
-
-    func saveToCore() {
-        let entity = NSEntityDescription.entity(forEntityName: "Leagues", in: managedContext)
-        let league = NSManagedObject(entity: entity!, insertInto: managedContext)
-        league.setValue(leagueId, forKey: "id")
-        league.setValue(currentLeague.league_name, forKey: "name")
-        league.setValue(currentLeague.country_name, forKey: "country")
-        league.setValue(currentLeague.league_logo, forKey: "logo")
-        league.setValue(sportId, forKey: "sport")
-        do {
-            try managedContext.save()
-            print("Saved")
-        } catch {
-            print(String(describing: error))
-        }
-        rightButton?.image = UIImage(systemName: "heart.fill")
-        showToastMessage(message: "Added !", color: .blue)
-    }
-
     func checkFavouriteLeague() {
         for league in likedLeagues {
             if league.value(forKey: "id") as? Int == leagueId {
