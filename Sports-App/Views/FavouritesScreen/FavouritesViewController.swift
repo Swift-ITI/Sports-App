@@ -12,6 +12,7 @@ import UIKit
 class FavouritesViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var likedLeagues: [NSManagedObject] = []
+    var currentLeague = League()
     var managedContext: NSManagedObjectContext!
     var coreDataManager: CoreDataManager?
     let reachability: Reachability = Reachability.forInternetConnection()
@@ -64,6 +65,10 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
         if reachability.isReachable() {
             let temp: NSManagedObject = likedLeagues[indexPath.row]
             segueTemp = temp
+            currentLeague.league_key = segueTemp?.value(forKey: "id") as? Int
+            currentLeague.league_name = segueTemp?.value(forKey: "name") as? String
+            currentLeague.league_logo = segueTemp?.value(forKey: "logo") as? String
+            currentLeague.country_name = segueTemp?.value(forKey: "country") as? String
             performSegue(withIdentifier: "goToDetails", sender: self)
         } else {
             print("Network is not connected\n")
@@ -77,6 +82,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
 
         teamDetailsVC?.sportId = segueTemp?.value(forKey: "sport") as? String
         teamDetailsVC?.leagueId = segueTemp?.value(forKey: "id") as? Int
+        teamDetailsVC?.currentLeague = self.currentLeague
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
