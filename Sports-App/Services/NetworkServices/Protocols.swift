@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GET_LEAGUES {
-    static func fetchLeagues(endPoint: String, completionHandler: @escaping (LeaguesResult?) -> Void)
+    static func fetchLeagues(endPoint: String, completionHandler: @escaping (LeagueResult?) -> Void)
 }
 
 protocol GET_EVENTS {

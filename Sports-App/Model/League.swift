@@ -16,7 +16,9 @@ class League: Decodable {
 //    var isLiked: Bool = false
 }
 
-class LeaguesResult: Decodable {
+class LeagueResult: Decodable {
     var success: Int = 0
     var result: [League]
 }
+
+

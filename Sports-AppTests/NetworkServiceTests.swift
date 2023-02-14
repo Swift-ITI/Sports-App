@@ -69,13 +69,13 @@ final class NetworkManagerTests: XCTestCase {
     func testGetLeagues() throws {
         let expectaion = expectation(description: "Waiting for the API to get Events")
         LeaguesService.fetchLeagues(endPoint: "football", completionHandler: { leagues in
-            guard let leagues = leagues?.result else
+            guard let leagues = leagues else
             {
                 XCTFail("No Data")
                 expectaion.fulfill()
                 return
             }
-            XCTAssertNotEqual(leagues.count, 0)
+            XCTAssertNotEqual(leagues.result.count, 0)
             expectaion.fulfill()
             
         })
