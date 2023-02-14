@@ -22,6 +22,8 @@ class Event: Decodable {
     var event_stadium: String?
     var event_referee: String?
     var home_team_logo: String?
+    var event_home_team_logo: String?
+    var event_away_team_logo: String?
     var away_team_logo: String?
     var event_country_key: Int?
     var league_logo: String?
@@ -36,7 +38,7 @@ class Teams: Decodable {
     var team_key: Int?
     var team_name: String?
     var team_logo: String?
-    var players: [Player]
+    var players: [Player]?
 }
 
 class Player: Decodable{
@@ -66,7 +68,9 @@ class Result: Decodable {
     var event_stadium: String?
     var event_referee: String?
     var home_team_logo: String?
+    var event_home_team_logo: String?
     var away_team_logo: String?
+    var event_away_team_logo: String?
     var event_country_key: Int?
     var league_logo: String?
     var country_logo: String?

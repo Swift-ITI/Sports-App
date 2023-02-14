@@ -158,8 +158,15 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
         switch collectionView {
         case eventsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCell", for: indexPath) as! EventCVCell
-            cell.awayImageE.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-            cell.homeImageE.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                switch self.sportId {
+                    case "basketball":
+                        cell.awayImageE.kf.setImage(with: URL(string: events[indexPath.row].event_away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                        cell.homeImageE.kf.setImage(with: URL(string: events[indexPath.row].event_home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                    default:
+                        cell.awayImageE.kf.setImage(with: URL(string: events[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                        cell.homeImageE.kf.setImage(with: URL(string: events[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                }
+           
             cell.dateLabel.text = events[indexPath.row].event_date
             cell.timeLabel.text = events[indexPath.row].event_time
 //            cell.awayImageE.image = UIImage(named: "SplashLogo")
@@ -174,8 +181,15 @@ extension LeagueDetailsViewController: UICollectionViewDataSource, UICollectionV
             return cell
         case resultsCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "resultCell", for: indexPath) as! ResultCVCell
-            cell.awayImage.kf.setImage(with: URL(string: results[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
-            cell.homeImage.kf.setImage(with: URL(string: results[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                switch self.sportId {
+                    case "basketball":
+                        cell.awayImage.kf.setImage(with: URL(string: results[indexPath.row].event_away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                        cell.homeImage.kf.setImage(with: URL(string: results[indexPath.row].event_home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                    default:
+                        cell.awayImage.kf.setImage(with: URL(string: results[indexPath.row].away_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                        cell.homeImage.kf.setImage(with: URL(string: results[indexPath.row].home_team_logo ?? "https://png.pngtree.com/png-vector/20190917/ourmid/pngtree-not-found-circle-icon-vectors-png-image_1737851.jpg"))
+                }
+            
             cell.dateLabel.text = results[indexPath.row].event_date
             cell.resultLabel.text = results[indexPath.row].event_final_result
             cell.timeLabel.text = results[indexPath.row].event_time
