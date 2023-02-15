@@ -64,8 +64,14 @@ extension LeaguesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cuurentLeague = leaguesArray?[indexPath.row]
-        performSegue(withIdentifier: "goToDetails", sender: self)
+        switch self.sportID {
+            case "tennis":
+                showAlert(Title: "On Preparing League", Message: "Sorry for this issue, Hope a nice day for You")
+            default:
+                cuurentLeague = leaguesArray?[indexPath.row]
+                performSegue(withIdentifier: "goToDetails", sender: self)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
