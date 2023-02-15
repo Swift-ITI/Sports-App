@@ -48,7 +48,14 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
         
         cell.sportName.text = sports?[indexPath.row]
-        cell.sportsImageView.image = UIImage(named: sports?[indexPath.row] ?? "")
+        switch self.sports?[indexPath.row]{
+            case "Cricket","Tennis":
+                cell.sportsImageView.contentMode = .scaleAspectFit
+                cell.sportsImageView.image = UIImage(named: sports?[indexPath.row] ?? "")
+            default:
+                cell.sportsImageView.image = UIImage(named: sports?[indexPath.row] ?? "")
+        }
+        
         //cell.backgroundColor = UIColor.clear
         
         return cell
@@ -61,7 +68,7 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if reachability.isReachable(){
             let leaguesVC = UIStoryboard(name: "LeaguesStoryboard", bundle: nil).instantiateViewController(withIdentifier: "leaguesStoryboard") as! LeaguesViewController
-            switch  sportsAPI?[indexPath.row]{
+            switch sportsAPI?[indexPath.row]{
             case "hockey","baseball","american-football":
                 showAlertNotConnected(Title: "On preparing Sport", Message: "Sorry for this issue, Hope a nice day for You")
             default:
