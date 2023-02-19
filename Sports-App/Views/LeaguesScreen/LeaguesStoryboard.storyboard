@@ -17,20 +17,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Xlq-6s-B2G">
-                                <rect key="frame" x="16" y="59" width="361" height="759"/>
+                                <rect key="frame" x="16" y="115" width="361" height="703"/>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Eea-af-zLE">
+                                <rect key="frame" x="16" y="59" width="361" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="ZKA-9Y-jUB"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xlq-6s-B2G" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="8NN-dO-6vM"/>
-                            <constraint firstItem="Xlq-6s-B2G" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Rgz-bM-4zW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Xlq-6s-B2G" secondAttribute="bottom" id="VHx-sn-l8S"/>
+                            <constraint firstItem="Xlq-6s-B2G" firstAttribute="top" secondItem="Eea-af-zLE" secondAttribute="bottom" id="ear-EQ-zcA"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Xlq-6s-B2G" secondAttribute="trailing" constant="16" id="fEp-0p-Dj0"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Eea-af-zLE" secondAttribute="trailing" constant="16" id="fon-xY-8Fc"/>
+                            <constraint firstItem="Eea-af-zLE" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="kCk-Gg-SEs"/>
+                            <constraint firstItem="Eea-af-zLE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="pWB-nQ-v0M"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="leaguesTableView" destination="Xlq-6s-B2G" id="nDH-RY-UG1"/>
+                        <outlet property="searchbar" destination="Eea-af-zLE" id="HKZ-g1-Lbg"/>
                         <segue destination="VPg-mJ-Fl0" kind="show" identifier="goToDetails" id="nYO-0b-8OD"/>
                     </connections>
                 </viewController>

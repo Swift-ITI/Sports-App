@@ -10,6 +10,12 @@ import Kingfisher
 import UIKit
 
 class LeaguesViewController: UIViewController {
+    
+    @IBOutlet weak var searchbar: UISearchBar! {
+        didSet{
+            searchbar.delegate = self
+        }
+    }
     @IBOutlet var leaguesTableView: UITableView! {
         didSet{
             leaguesTableView.delegate = self
@@ -17,6 +23,7 @@ class LeaguesViewController: UIViewController {
         }
     }
     var leaguesArray: [League]?
+    var searchArray: [League]?
     var cuurentLeague:League?
     var leagueVM: LeaguesVM?
     var sportID: String?
@@ -86,6 +93,7 @@ extension LeaguesViewController {
     func renderView() {
         DispatchQueue.main.async {
             self.leaguesArray = self.leagueVM?.leagues ?? []
+            self.searchArray = self.leagueVM?.leagues ?? []
             self.leaguesTableView.reloadData()
         }
     }
@@ -98,4 +106,18 @@ extension LeaguesViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+}
+extension LeaguesViewController : UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        leaguesArray = []
+        if searchText == "" {
+            leaguesArray = searchArray
+        }
+        for league in searchArray ?? [] {
+            if league.league_name!.uppercased().contains(searchText.uppercased()){
+                leaguesArray?.append(league)
+            }
+        }
+        self.leaguesTableView.reloadData()
+    }
 }

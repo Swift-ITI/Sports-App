@@ -105,7 +105,7 @@
                     <navigationItem key="navigationItem" title="Favourites" id="UUj-Ny-gaA"/>
                     <connections>
                         <outlet property="tableView" destination="hyd-Gw-jh5" id="rQw-d6-nTV"/>
-                        <segue destination="u8U-A7-6JM" kind="show" identifier="goToDetails" id="DcO-GE-4Ib"/>
+                        <segue destination="u8U-A7-6JM" kind="showDetail" identifier="goToDetails" id="DcO-GE-4Ib"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYW-wU-HPR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -146,7 +146,6 @@
         <!--Navigation Controller-->
         <scene sceneID="SjK-Zw-ZE3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FyK-RZ-s02" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r8K-vd-bLh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="oYq-sH-Yhu"/>
                     <toolbarItems/>
@@ -159,6 +158,7 @@
                         <segue destination="ht3-hd-28b" kind="relationship" relationship="rootViewController" id="Fi4-X2-LWa"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FyK-RZ-s02" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="867.93893129770993" y="322.53521126760563"/>
         </scene>
