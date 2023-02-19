@@ -29,11 +29,12 @@ class LeagueDetailsViewController: UIViewController {
     var managedContext: NSManagedObjectContext!
     var rightButton: UIBarButtonItem?
     var coreDataObject: CoreDataManager?
-
+    let dispatch = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
 
+        
         // MARK: RegisterCells
 
         let eventNib = UINib(nibName: "EventCVCell", bundle: nil)
@@ -55,24 +56,38 @@ class LeagueDetailsViewController: UIViewController {
         likedLeagues = coreDataObject?.fetchData() ?? []
 
         // MARK: FetchData
-
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.startAnimating()
         leagueVM.getTeams(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
+        
         leagueVM.getResults(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
+       
         leagueVM.getEvents(leagueId: leagueId ?? 177, sportId: sportId ?? "football")
-
+        dispatch.enter()
         leagueVM.bindTeamsToLeagueDVC = { () in
             self.renderTeams()
+            self.dispatch.leave()
         }
+        dispatch.enter()
         leagueVM.bindResultsToLeagueDVC = { () in
             self.renderResults()
+            self.dispatch.leave()
         }
+        dispatch.enter()
         leagueVM.bindEventsToLeagueDVC = { () in
             self.renderEvents()
+            self.dispatch.leave()
         }
 
-        resultsCollectionView.reloadData()
-        teamsCollectionView.reloadData()
-        eventsCollectionView.reloadData()
+        dispatch.notify(queue: .main) {
+            indicator.stopAnimating()
+            self.resultsCollectionView.reloadData()
+            self.teamsCollectionView.reloadData()
+            self.eventsCollectionView.reloadData()
+        }
+        
         checkFavouriteLeague()
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))
         swipe.direction = .down
@@ -229,24 +244,25 @@ extension LeagueDetailsViewController {
     func renderTeams() {
         DispatchQueue.main.async {
             self.teams = self.leagueVM.teams
-            self.teamsCollectionView.reloadData()
+            //self.teamsCollectionView.reloadData()
         }
     }
 
     func renderResults() {
         DispatchQueue.main.async {
             self.results = self.leagueVM.results
-            self.resultsCollectionView.reloadData()
+            //self.resultsCollectionView.reloadData()
         }
     }
 
     func renderEvents() {
         DispatchQueue.main.async {
             self.events = self.leagueVM.events
-            self.eventsCollectionView.reloadData()
+            //self.eventsCollectionView.reloadData()
         }
     }
 
+    
     override func viewWillAppear(_ animated: Bool) {
         viewDidLoad()
         resultsCollectionView.reloadData()

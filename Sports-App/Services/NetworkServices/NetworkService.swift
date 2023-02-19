@@ -16,7 +16,7 @@ class LeagueDetailsService: GET_EVENTS, GET_TEAMS, GET_RESULTS {
         let addDays = DateComponents(month: 3)
         let futureDay = calendar.date(byAdding: addDays, to: cuurentDate)?.description.split(separator: " ")[0]
 
-        guard let url = URL(string: "https://apiv2.allsportsapi.com/\(sportId)/?met=Fixtures&APIkey=aaccf26f834a6b75d941d4aa7c4aee5dbef5268bc87e23941f9c07afa8fc98cc&from=\(today)&to=\(futureDay ?? "")&leagueId=\(leagueId)") else {
+        guard let url = URL(string: "https://apiv2.allsportsapi.com/\(sportId)/?met=Fixtures&APIkey=6006e0bee72004ccef17f23f6ab68d967e8deb5c4340ab2b656fa19f0497cb5a&from=\(today)&to=\(futureDay ?? "")&leagueId=\(leagueId)") else {
             completionHandler(nil)
             return
         }
@@ -38,7 +38,7 @@ class LeagueDetailsService: GET_EVENTS, GET_TEAMS, GET_RESULTS {
     }
 
     static func fetchTeams(completionHandler: @escaping (TeamsResult?) -> Void, leagueId: Int, sportId: String) {
-        guard let url = URL(string: "https://apiv2.allsportsapi.com/\(sportId)/?&Leagues&leagueId=\(leagueId)?&met=Teams&APIkey=aaccf26f834a6b75d941d4aa7c4aee5dbef5268bc87e23941f9c07afa8fc98cc")
+        guard let url = URL(string: "https://apiv2.allsportsapi.com/\(sportId)/?&Leagues&leagueId=\(leagueId)?&met=Teams&APIkey=6006e0bee72004ccef17f23f6ab68d967e8deb5c4340ab2b656fa19f0497cb5a")
         else {
             completionHandler(nil)
             return
@@ -71,7 +71,7 @@ class LeagueDetailsService: GET_EVENTS, GET_TEAMS, GET_RESULTS {
         let subDays = DateComponents(month: -3)
         let pastDay = calendar.date(byAdding: subDays, to: cuurentDate)?.description.split(separator: " ")[0]
 
-        guard let url = URL(string: "https://apiv2.allsportsapi.com/\(sportId)/?met=Fixtures&APIkey=aaccf26f834a6b75d941d4aa7c4aee5dbef5268bc87e23941f9c07afa8fc98cc&from=\(pastDay ?? "")&to=\(today)&leagueId=\(leagueId)") else {
+        guard let url = URL(string: "https://apiv2.allsportsapi.com/\(sportId)/?met=Fixtures&APIkey=6006e0bee72004ccef17f23f6ab68d967e8deb5c4340ab2b656fa19f0497cb5a&from=\(pastDay ?? "")&to=\(today)&leagueId=\(leagueId)") else {
             completionHandler(nil)
             return
         }
