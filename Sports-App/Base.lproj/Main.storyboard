@@ -105,7 +105,7 @@
                     <navigationItem key="navigationItem" title="Favourites" id="UUj-Ny-gaA"/>
                     <connections>
                         <outlet property="tableView" destination="hyd-Gw-jh5" id="rQw-d6-nTV"/>
-                        <segue destination="u8U-A7-6JM" kind="showDetail" identifier="goToDetails" id="DcO-GE-4Ib"/>
+                        <segue destination="u8U-A7-6JM" kind="show" identifier="goToDetails" id="DcO-GE-4Ib"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYW-wU-HPR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
